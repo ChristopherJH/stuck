@@ -4,6 +4,7 @@ import "./App.css";
 import { Header } from "./components/Header";
 import { Action } from "./types/Action";
 import { StateType } from "./types/StateType";
+import { AddValues } from "./components/AddValues";
 
 const initialState: StateType = {
   options: [],
@@ -12,6 +13,7 @@ const initialState: StateType = {
 
 export const ACTIONS = {
   ADD_OPTION: "add-option",
+  ADD_VALUE: "add-value",
 };
 
 function reducer(state: StateType, action: Action): StateType {
@@ -25,7 +27,19 @@ function reducer(state: StateType, action: Action): StateType {
           value_weightings: [],
         });
       }
-      console.log(state.options);
+      console.log(state);
+      return state;
+    case ACTIONS.ADD_VALUE:
+      console.log("Add value action triggered");
+      if (typeof action.payload === "string") {
+        state.values.push({
+          id: new Date(),
+          name: action.payload,
+          weighting: 1,
+        });
+      }
+      console.log(state);
+
       return state;
     default:
       return state;
@@ -45,6 +59,7 @@ function App() {
         </button>
       )}
       {beginClicked && <AddOptions dispatch={dispatch} state={state} />}
+      <AddValues dispatch={dispatch} state={state} />
     </div>
   );
 }
