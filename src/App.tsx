@@ -19,7 +19,11 @@ function reducer(state: StateType, action: Action): StateType {
     case ACTIONS.ADD_OPTION:
       console.log("Add option action triggered");
       if (typeof action.payload === "string") {
-        state.options.push({ name: action.payload, value_weightings: [] });
+        state.options.push({
+          id: new Date(),
+          name: action.payload,
+          value_weightings: [],
+        });
       }
       console.log(state.options);
       return state;
