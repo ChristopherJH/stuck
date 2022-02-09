@@ -3,6 +3,8 @@ import { StateType } from "../types/StateType";
 interface DisplayValuesProps {
   state: StateType;
 }
+
+// Map through values and display each one
 export function DisplayValues(props: DisplayValuesProps): JSX.Element {
   return (
     <div className="options-list">

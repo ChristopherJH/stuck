@@ -2,51 +2,24 @@ import { useReducer, useState } from "react";
 import { AddOptions } from "./components/AddOptions";
 import "./App.css";
 import { Header } from "./components/Header";
-import { Action } from "./types/Action";
 import { StateType } from "./types/StateType";
 import { AddValues } from "./components/AddValues";
+import ValuesWeightings from "./components/ValuesWeightings";
+import { reducer } from "./utility/reducer";
 
 const initialState: StateType = {
   options: [],
   values: [],
 };
 
-export const ACTIONS = {
-  ADD_OPTION: "add-option",
-  ADD_VALUE: "add-value",
-};
-
-function reducer(state: StateType, action: Action): StateType {
-  switch (action.type) {
-    case ACTIONS.ADD_OPTION:
-      console.log("Add option action triggered");
-      if (typeof action.payload === "string") {
-        state.options.push({
-          id: new Date(),
-          name: action.payload,
-          value_weightings: [],
-        });
-      }
-      console.log(state);
-      return state;
-    case ACTIONS.ADD_VALUE:
-      console.log("Add value action triggered");
-      if (typeof action.payload === "string") {
-        state.values.push({
-          id: new Date(),
-          name: action.payload,
-          weighting: 1,
-        });
-      }
-      console.log(state);
-
-      return state;
-    default:
-      return state;
-  }
-}
 function App() {
+  // States
   const [beginClicked, setBeginClicked] = useState<boolean>(false);
+  const [finishOptionsClicked, setFinishedOptionsClicked] =
+    useState<boolean>(false);
+  const [finishValuesClicked, setFinishedValuesClicked] =
+    useState<boolean>(false);
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
@@ -58,8 +31,25 @@ function App() {
           Begin
         </button>
       )}
-      {beginClicked && <AddOptions dispatch={dispatch} state={state} />}
-      <AddValues dispatch={dispatch} state={state} />
+      {beginClicked && (
+        <AddOptions
+          dispatch={dispatch}
+          state={state}
+          setFinishedOptionsClicked={setFinishedOptionsClicked}
+          finishOptionsClicked={finishOptionsClicked}
+        />
+      )}
+      {finishOptionsClicked && (
+        <AddValues
+          dispatch={dispatch}
+          state={state}
+          setFinishedValuesClicked={setFinishedValuesClicked}
+          finishValuesClicked={finishValuesClicked}
+        />
+      )}
+      {finishValuesClicked && (
+        <ValuesWeightings state={state} dispatch={dispatch} />
+      )}
     </div>
   );
 }
