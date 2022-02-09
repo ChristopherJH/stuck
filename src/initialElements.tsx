@@ -7,7 +7,7 @@ export const initialElements = [
   },
   {
     id: "2",
-    data: { label: <div style={{ backgroundColor: "blue" }}>Begin</div> },
+    data: { label: "Begin" },
     position: { x: 500, y: 100 },
   },
   {
