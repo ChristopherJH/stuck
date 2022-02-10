@@ -1,7 +1,7 @@
 import { AttributeWeightType } from "./AttributeWeightType";
 
 export interface Option {
-  id: Date;
+  id: number;
   name: string;
   attribute_weightings: AttributeWeightType[];
 }

@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useReducer, useRef, useState } from "react";
 import { AddOptions } from "./components/AddOptions";
 import "./App.css";
 import { Header } from "./components/Header";
@@ -27,26 +27,30 @@ function App() {
   const [revealWinnerClicked, setRevealWinnerClicked] =
     useState<boolean>(false);
 
+  // References for scrolling
+  const addAttributesRef = useRef<null | HTMLDivElement>(null);
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <div className="App">
       <Header />
-
       <AddOptions
         dispatch={dispatch}
         state={state}
         setFinishedOptionsClicked={setFinishedOptionsClicked}
         finishOptionsClicked={finishOptionsClicked}
+        addAttributesRef={addAttributesRef}
       />
-      {finishOptionsClicked && (
-        <AddAttributes
-          dispatch={dispatch}
-          state={state}
-          setFinishedAttributesClicked={setFinishedAttributesClicked}
-          finishAttributesClicked={finishAttributesClicked}
-        />
-      )}
+
+      <AddAttributes
+        dispatch={dispatch}
+        state={state}
+        setFinishedAttributesClicked={setFinishedAttributesClicked}
+        finishAttributesClicked={finishAttributesClicked}
+        addAttributesRef={addAttributesRef}
+      />
+
       {finishAttributesClicked && (
         <WeightAttributes
           state={state}

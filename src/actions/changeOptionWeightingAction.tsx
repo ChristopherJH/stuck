@@ -5,7 +5,7 @@ export function changeOptionWeightingAction(
   optionName: string,
   attributeName: string,
   weighting: number
-) {
+): StateType {
   // Find option
   const option = state.options.find((option) => option.name === optionName);
   // Find attribute
@@ -18,4 +18,5 @@ export function changeOptionWeightingAction(
     attribute["weighting"] = weighting;
   }
   console.log(state);
+  return state;
 }

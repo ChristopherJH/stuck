@@ -39,6 +39,7 @@ body {
 
 h1 {
   font-size: 64px;
+  margin-bottom: 0px;
 }
 
 h2 {
@@ -70,7 +71,7 @@ h2 {
   padding: 50px;
   justify-content: center;
   border-radius: 20px;
-  margin: 50px auto 0px;
+  margin: 200px auto 200px;
   width: 80%;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -121,6 +122,16 @@ h2 {
   flex-wrap: wrap;
   display: flex;
   justify-content: center;
+}
+
+.slider {
+  min-width: 200px;
+}
+
+.attributes-weights-title-and-refresh,
+.weight-options-title-and-refresh {
+  display: flex;
+  justify-content: space-between;
 }
 
 .weight-attribute,
@@ -183,4 +194,9 @@ h2 {
 
 .winner-name {
   margin: 0px;
+}
+
+.reload-button {
+  display: block;
+  margin: 10px 0px 10px auto;
 }

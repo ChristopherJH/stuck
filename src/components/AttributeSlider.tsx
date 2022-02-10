@@ -30,6 +30,7 @@ export function AttributeSlider(props: AttributeSliderProps): JSX.Element {
       <div className="attribute-slider-and-number">
         <input
           type="range"
+          className="slider"
           min="0"
           max="100"
           step="1"
