@@ -1,5 +1,6 @@
 import { Dispatch, useState } from "react";
 import { GrAddCircle } from "react-icons/gr";
+import { toast } from "react-toastify";
 import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
@@ -32,6 +33,13 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
     }
     setAttributeName("");
   }
+  function handleNextClicked() {
+    if (props.state.attributes.length > 1) {
+      props.setFinishedAttributesClicked(true);
+    } else {
+      toast.warn("Add atleast two attributes");
+    }
+  }
 
   return (
     <div className="add-attributes">
@@ -52,10 +60,7 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
       </div>
 
       {!props.finishAttributesClicked && (
-        <button
-          className="next-button"
-          onClick={() => props.setFinishedAttributesClicked(true)}
-        >
+        <button className="next-button" onClick={() => handleNextClicked()}>
           Next
         </button>
       )}

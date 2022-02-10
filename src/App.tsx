@@ -8,6 +8,8 @@ import WeightAttributes from "./components/WeightAttributes";
 import { reducer } from "./utility/reducer";
 import { WeightOptions } from "./components/WeightOptions";
 import { DisplayWinner } from "./components/DisplayWinner";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const initialState: StateType = {
   options: [],
@@ -62,6 +64,17 @@ function App() {
         />
       )}
       {revealWinnerClicked && <DisplayWinner state={state} />}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

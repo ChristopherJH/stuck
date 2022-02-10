@@ -4,6 +4,7 @@ import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
 import { GrAddCircle } from "react-icons/gr";
 import { DisplayChoices } from "./DisplayChoices";
+import { toast } from "react-toastify";
 
 interface AddOptionProps {
   dispatch: Dispatch<Action>;
@@ -33,6 +34,14 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
     setOptionAttribute("");
   }
 
+  function handleNextClicked() {
+    if (props.state.options.length > 1) {
+      props.setFinishedOptionsClicked(true);
+    } else {
+      toast.warn("Add atleast two options");
+    }
+  }
+
   return (
     <div className="add-options">
       <h2>What are the options?</h2>
@@ -52,10 +61,7 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
       </div>
 
       {!props.finishOptionsClicked && (
-        <button
-          className="next-button"
-          onClick={() => props.setFinishedOptionsClicked(true)}
-        >
+        <button className="next-button" onClick={() => handleNextClicked()}>
           Next
         </button>
       )}
