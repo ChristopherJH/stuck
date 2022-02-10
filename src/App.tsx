@@ -3,21 +3,26 @@ import { AddOptions } from "./components/AddOptions";
 import "./App.css";
 import { Header } from "./components/Header";
 import { StateType } from "./types/StateType";
-import { AddValues } from "./components/AddValues";
-import ValuesWeightings from "./components/ValuesWeightings";
+import { AddAttributes } from "./components/AddAttributes";
+import WeightAttributes from "./components/WeightAttributes";
 import { reducer } from "./utility/reducer";
+import { WeightOptions } from "./components/WeightOptions";
+import { DisplayWinner } from "./components/DisplayWinner";
 
 const initialState: StateType = {
   options: [],
-  values: [],
+  attributes: [],
 };
 
 function App() {
   // States
-  const [beginClicked, setBeginClicked] = useState<boolean>(false);
   const [finishOptionsClicked, setFinishedOptionsClicked] =
     useState<boolean>(false);
-  const [finishValuesClicked, setFinishedValuesClicked] =
+  const [finishAttributesClicked, setFinishedAttributesClicked] =
+    useState<boolean>(false);
+  const [weightAttributesClicked, setWeightAttributesClicked] =
+    useState<boolean>(false);
+  const [revealWinnerClicked, setRevealWinnerClicked] =
     useState<boolean>(false);
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -26,30 +31,37 @@ function App() {
     <div className="App">
       <Header />
 
-      {!beginClicked && (
-        <button className="begin-button" onClick={() => setBeginClicked(true)}>
-          Begin
-        </button>
-      )}
-      {beginClicked && (
-        <AddOptions
-          dispatch={dispatch}
-          state={state}
-          setFinishedOptionsClicked={setFinishedOptionsClicked}
-          finishOptionsClicked={finishOptionsClicked}
-        />
-      )}
+      <AddOptions
+        dispatch={dispatch}
+        state={state}
+        setFinishedOptionsClicked={setFinishedOptionsClicked}
+        finishOptionsClicked={finishOptionsClicked}
+      />
       {finishOptionsClicked && (
-        <AddValues
+        <AddAttributes
           dispatch={dispatch}
           state={state}
-          setFinishedValuesClicked={setFinishedValuesClicked}
-          finishValuesClicked={finishValuesClicked}
+          setFinishedAttributesClicked={setFinishedAttributesClicked}
+          finishAttributesClicked={finishAttributesClicked}
         />
       )}
-      {finishValuesClicked && (
-        <ValuesWeightings state={state} dispatch={dispatch} />
+      {finishAttributesClicked && (
+        <WeightAttributes
+          state={state}
+          dispatch={dispatch}
+          WeightAttributesClicked={weightAttributesClicked}
+          setWeightAttributesClicked={setWeightAttributesClicked}
+        />
       )}
+      {weightAttributesClicked && (
+        <WeightOptions
+          state={state}
+          dispatch={dispatch}
+          revealWinnerClicked={revealWinnerClicked}
+          setRevealWinnerClicked={setRevealWinnerClicked}
+        />
+      )}
+      {revealWinnerClicked && <DisplayWinner state={state} />}
     </div>
   );
 }

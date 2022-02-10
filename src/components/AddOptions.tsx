@@ -11,25 +11,25 @@ interface AddOptionProps {
   finishOptionsClicked: boolean;
 }
 export function AddOptions(props: AddOptionProps): JSX.Element {
-  const [optionValue, setOptionValue] = useState<string>("");
+  const [optionAttribute, setOptionAttribute] = useState<string>("");
 
   // Handler function for adding a new option
   function AddOption() {
     // Check whether a duplicate option or empty
     if (
-      props.state.options.find((option) => option.name === optionValue) ===
+      props.state.options.find((option) => option.name === optionAttribute) ===
         undefined &&
-      optionValue !== ""
+      optionAttribute !== ""
     ) {
       props.dispatch({
         type: ACTIONS.ADD_OPTION,
-        payload: optionValue,
+        payload: optionAttribute,
       });
     } else {
       console.log("Option already exists");
     }
-    // Reset value
-    setOptionValue("");
+    // Reset attribute
+    setOptionAttribute("");
   }
 
   return (
@@ -38,10 +38,11 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
 
       <DisplayOptions state={props.state} />
       <input
+        className="text-input"
         type="text"
         placeholder="Lasagna"
-        value={optionValue}
-        onChange={(e) => setOptionValue(e.target.value)}
+        value={optionAttribute}
+        onChange={(e) => setOptionAttribute(e.target.value)}
       ></input>
       <button onClick={() => AddOption()}>Add</button>
       {!props.finishOptionsClicked && (
