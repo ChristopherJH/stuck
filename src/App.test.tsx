@@ -4,6 +4,6 @@ import App from "./App";
 
 test("renders learn react link", () => {
   render(<App />);
-  const titleElement = screen.getByText("Welcome to DeciderFlow!");
+  const titleElement = screen.getByText("❓ Welcome to DeciderFlow!");
   expect(titleElement).toBeInTheDocument();
 });
