@@ -2,8 +2,8 @@ import { Dispatch, useState } from "react";
 import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
-import { DisplayOptions } from "./DisplayOptions";
 import { GrAddCircle } from "react-icons/gr";
+import { DisplayChoices } from "./DisplayChoices";
 
 interface AddOptionProps {
   dispatch: Dispatch<Action>;
@@ -48,7 +48,7 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
         <button className="add-button" onClick={() => AddOption()}>
           <GrAddCircle className="add-icon" />
         </button>
-        <DisplayOptions state={props.state} />
+        <DisplayChoices state={props.state} options={true} />
       </div>
 
       {!props.finishOptionsClicked && (

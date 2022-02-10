@@ -104,14 +104,12 @@ h2 {
   min-height: 30vh;
 }
 
-.options-list,
-.attributes-list {
+.choices-list {
   font-size: large;
   width: 80%;
 }
 
-.options-list p,
-.attributes-list p {
+.choices-list p {
   padding: 5px 10px;
   border-bottom: #0d0d0e solid 1px;
 }
