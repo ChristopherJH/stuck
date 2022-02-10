@@ -37,6 +37,7 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
       <h2>Attributes</h2>
       <DisplayAttributes state={props.state} />
       <input
+        className="text-input"
         type="text"
         placeholder="Tastiness"
         value={attributeName}

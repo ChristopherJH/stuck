@@ -38,6 +38,7 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
 
       <DisplayOptions state={props.state} />
       <input
+        className="text-input"
         type="text"
         placeholder="Lasagna"
         value={optionAttribute}

@@ -16,7 +16,6 @@ const initialState: StateType = {
 
 function App() {
   // States
-  const [beginClicked, setBeginClicked] = useState<boolean>(false);
   const [finishOptionsClicked, setFinishedOptionsClicked] =
     useState<boolean>(false);
   const [finishAttributesClicked, setFinishedAttributesClicked] =
@@ -32,19 +31,12 @@ function App() {
     <div className="App">
       <Header />
 
-      {!beginClicked && (
-        <button className="begin-button" onClick={() => setBeginClicked(true)}>
-          Begin
-        </button>
-      )}
-      {beginClicked && (
-        <AddOptions
-          dispatch={dispatch}
-          state={state}
-          setFinishedOptionsClicked={setFinishedOptionsClicked}
-          finishOptionsClicked={finishOptionsClicked}
-        />
-      )}
+      <AddOptions
+        dispatch={dispatch}
+        state={state}
+        setFinishedOptionsClicked={setFinishedOptionsClicked}
+        finishOptionsClicked={finishOptionsClicked}
+      />
       {finishOptionsClicked && (
         <AddAttributes
           dispatch={dispatch}
