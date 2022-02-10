@@ -4,14 +4,14 @@ import { StateType } from "../types/StateType";
 import { Value } from "../types/Value";
 import { ACTIONS } from "../utility/reducer";
 
-interface ValueWeightingProps {
+interface WeightValueProps {
   value: Value;
   dispatch: Dispatch<Action>;
   state: StateType;
 }
 
 // A single component where the user can change the weighting of a value
-export function ValueWeighting(props: ValueWeightingProps): JSX.Element {
+export function WeightValue(props: WeightValueProps): JSX.Element {
   // State to update slider values
   const [weighting, setWeighting] = useState<number>(1);
 
@@ -19,7 +19,7 @@ export function ValueWeighting(props: ValueWeightingProps): JSX.Element {
   function handleWeightingChange(num: number) {
     setWeighting(num);
     props.dispatch({
-      type: ACTIONS.CHANGE_WEIGHTING,
+      type: ACTIONS.CHANGE_VALUE_WEIGHTING,
       payload: { name: props.value.name, weighting: num },
     });
   }
@@ -32,8 +32,8 @@ export function ValueWeighting(props: ValueWeightingProps): JSX.Element {
         min={0}
         max={100}
         step={1}
-        value={weighting * 100}
-        onChange={(e) => handleWeightingChange(parseInt(e.target.value) / 100)}
+        value={weighting}
+        onChange={(e) => handleWeightingChange(parseInt(e.target.value))}
       ></input>
       <p>{weighting}</p>
       <h3>{props.value.name}</h3>

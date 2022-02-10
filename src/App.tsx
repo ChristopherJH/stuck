@@ -4,8 +4,9 @@ import "./App.css";
 import { Header } from "./components/Header";
 import { StateType } from "./types/StateType";
 import { AddValues } from "./components/AddValues";
-import ValuesWeightings from "./components/ValuesWeightings";
+import WeightValues from "./components/WeightValues";
 import { reducer } from "./utility/reducer";
+import { WeightOptions } from "./components/WeightOptions";
 
 const initialState: StateType = {
   options: [],
@@ -18,6 +19,8 @@ function App() {
   const [finishOptionsClicked, setFinishedOptionsClicked] =
     useState<boolean>(false);
   const [finishValuesClicked, setFinishedValuesClicked] =
+    useState<boolean>(false);
+  const [WeightValuesClicked, setWeightValuesClicked] =
     useState<boolean>(false);
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -48,8 +51,14 @@ function App() {
         />
       )}
       {finishValuesClicked && (
-        <ValuesWeightings state={state} dispatch={dispatch} />
+        <WeightValues
+          state={state}
+          dispatch={dispatch}
+          WeightValuesClicked={WeightValuesClicked}
+          setWeightValuesClicked={setWeightValuesClicked}
+        />
       )}
+      {WeightValuesClicked && <WeightOptions state={state} />}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { StateType } from "../types/StateType";
 
-export function changeWeightingAction(
+export function changeValueWeightingAction(
   state: StateType,
   name: string,
   weighting: number
