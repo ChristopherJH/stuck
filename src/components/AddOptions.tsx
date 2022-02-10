@@ -1,4 +1,4 @@
-import { Dispatch, useState } from "react";
+import { Dispatch, MutableRefObject, useState } from "react";
 import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
@@ -11,6 +11,7 @@ interface AddOptionProps {
   state: StateType;
   setFinishedOptionsClicked: (input: boolean) => void;
   finishOptionsClicked: boolean;
+  addAttributesRef: MutableRefObject<HTMLDivElement | null>;
 }
 export function AddOptions(props: AddOptionProps): JSX.Element {
   const [optionAttribute, setOptionAttribute] = useState<string>("");
@@ -37,6 +38,13 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
   function handleNextClicked() {
     if (props.state.options.length > 1) {
       props.setFinishedOptionsClicked(true);
+      if (props.addAttributesRef.current) {
+        props.addAttributesRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "nearest",
+        });
+      }
     } else {
       toast.warn("Add atleast two options");
     }

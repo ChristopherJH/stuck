@@ -29,6 +29,7 @@ export function WeightAttribute(props: WeightAttributeProps): JSX.Element {
       <h3>{props.attribute.name}</h3>
       <input
         type="range"
+        className="slider"
         min={0}
         max={100}
         step={1}

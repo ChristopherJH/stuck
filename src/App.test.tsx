@@ -4,7 +4,7 @@ import App from "./App";
 
 test("Renders title element", () => {
   render(<App />);
-  const titleElement = screen.getByText("❓ Welcome to DeciderFlow!");
+  const titleElement = screen.getByText("❓ Stuck");
   expect(titleElement).toBeInTheDocument();
 });
 

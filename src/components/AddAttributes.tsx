@@ -1,4 +1,4 @@
-import { Dispatch, useState } from "react";
+import { Dispatch, MutableRefObject, useState } from "react";
 import { GrAddCircle } from "react-icons/gr";
 import { toast } from "react-toastify";
 import { Action } from "../types/Action";
@@ -11,6 +11,7 @@ interface AddattributeProps {
   state: StateType;
   setFinishedAttributesClicked: (input: boolean) => void;
   finishAttributesClicked: boolean;
+  addAttributesRef: MutableRefObject<HTMLDivElement | null>;
 }
 export function AddAttributes(props: AddattributeProps): JSX.Element {
   const [attributeName, setAttributeName] = useState<string>("");
@@ -45,7 +46,7 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
     <div className="add-attributes">
       <h2>What's important?</h2>
 
-      <div className="attributes-list-and-add">
+      <div ref={props.addAttributesRef} className="attributes-list-and-add">
         <input
           className="text-input"
           type="text"

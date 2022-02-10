@@ -1,7 +1,7 @@
 export function Header(): JSX.Element {
   return (
     <div className="header">
-      <h1>❓ Welcome to DeciderFlow!</h1>
+      <h1>❓ Stuck</h1>
       <div className="header-subheaders">
         <h2>Let’s help weigh up some options...</h2>
         <div className="header-questions">

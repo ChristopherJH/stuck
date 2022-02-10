@@ -1,5 +1,5 @@
 export interface Attribute {
-  id: Date;
+  id: number;
   name: string;
   weighting: number;
 }

@@ -1,4 +1,5 @@
-import { Dispatch } from "react";
+import { Dispatch, useState } from "react";
+import { HiOutlineRefresh } from "react-icons/hi";
 import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
 import { WeightAttribute } from "./WeightAttribute";
@@ -14,9 +15,18 @@ interface WeightAttributessProps {
 export default function WeightAttributes(
   props: WeightAttributessProps
 ): JSX.Element {
+  // State for refreshing page
+  const [refresh, setRefresh] = useState(false);
+
   return (
     <div className="attributes-weights">
-      <h2>How important are they?</h2>
+      <div className="attributes-weights-title-and-refresh">
+        <h2>How important are they?</h2>
+        <button className="refresh-button" onClick={() => setRefresh(!refresh)}>
+          <HiOutlineRefresh />
+        </button>
+      </div>
+
       <div className="attributes-weights-list">
         {props.state.attributes.map((attribute) => {
           return (
