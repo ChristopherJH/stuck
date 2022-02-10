@@ -14,6 +14,7 @@ button:hover {
 }
 
 .text-input {
+  width: 75%;
   padding: 10px;
   font-size: large;
   background-color: transparent;
@@ -22,7 +23,7 @@ button:hover {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  border-bottom: #2196f3 solid 1px;
+  border-bottom: #0d0d0e solid 1px;
   border-radius: 0px;
 }
 
@@ -31,7 +32,7 @@ button:hover {
 }
 
 body {
-  background-color: #ecf0f1;
+  background-color: #fafbfb;
   color: #2c3e50;
   margin: 20px;
 }
@@ -51,7 +52,7 @@ h2 {
 }
 
 .header-questions {
-  margin: 0px 50px 0px;
+  margin: 20px 50px 0px;
 }
 
 .begin-button {
@@ -59,11 +60,127 @@ h2 {
   margin: auto;
 }
 
-/* Add options */
+/* Add options and attributes */
 
-.add-options {
+.add-options,
+.add-attributes,
+.attributes-weights,
+.weight-options {
   background-color: #e3f2fd;
   padding: 50px;
   justify-content: center;
   border-radius: 20px;
+  margin: 50px auto 0px;
+  width: 80%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.add-button,
+.refresh-button {
+  border-bottom: 0px;
+  cursor: pointer;
+  font-size: x-large;
+}
+
+.add-button:hover,
+.refresh-button:hover {
+  border-bottom: 0px;
+}
+
+.next-button {
+  display: block;
+  margin: 10px 0px 10px auto;
+}
+
+.options-list-and-add,
+.attributes-list-and-add {
+  width: 50%;
+  margin: auto;
+  background-color: #fafbfb;
+  margin: 20px auto;
+  padding: 40px 0px 40px 40px;
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  min-height: 30vh;
+}
+
+.choices-list {
+  font-size: large;
+  width: 80%;
+}
+
+.choices-list p {
+  padding: 5px 10px;
+  border-bottom: #0d0d0e solid 1px;
+}
+
+/* Weight Attributes and Options */
+
+.attributes-weights-list,
+.options-weights-list {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+}
+
+.weight-attribute,
+.weight-option,
+.winner-details {
+  background-color: #fafbfb;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.weight-option h3 {
+  font-size: x-large;
+}
+
+.weight-option h4 {
+  font-size: medium;
+  margin: 0px 0px 10px;
+}
+
+.attribute-slider-and-number {
+  display: flex;
+}
+
+.attribute-slider-and-number p {
+  margin-left: 10px;
+  width: 30px;
+}
+
+/* Display Winner */
+
+.winner-details {
+  width: 50%;
+  margin: 50px auto;
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.reveal-winner-button {
+  margin: 20px auto 0px;
+  display: block;
+  color: #9ccc65;
+  border-bottom: #9ccc65 solid 1px;
+  font-size: x-large;
+}
+
+.reveal-winner-button:hover {
+  color: #c5e1a5;
+  border-bottom: #c5e1a5 solid 1px;
+}
+
+.refresh-button {
+  font-size: x-large;
+  margin: 0px 0px 0px auto;
+  display: block;
+  padding: 0px;
+}
+
+.winner-name {
+  margin: 0px;
 }

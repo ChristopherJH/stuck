@@ -2,8 +2,14 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-test("renders learn react link", () => {
+test("Renders title element", () => {
   render(<App />);
-  const titleElement = screen.getByText("Welcome to DeciderFlow!");
+  const titleElement = screen.getByText("❓ Welcome to DeciderFlow!");
   expect(titleElement).toBeInTheDocument();
+});
+
+test("Renders options selector element", () => {
+  render(<App />);
+  const optionsElement = screen.getByText("What are the options?");
+  expect(optionsElement).toBeInTheDocument();
 });

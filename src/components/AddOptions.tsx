@@ -2,7 +2,9 @@ import { Dispatch, useState } from "react";
 import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
-import { DisplayOptions } from "./DisplayOptions";
+import { GrAddCircle } from "react-icons/gr";
+import { DisplayChoices } from "./DisplayChoices";
+import { toast } from "react-toastify";
 
 interface AddOptionProps {
   dispatch: Dispatch<Action>;
@@ -32,21 +34,34 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
     setOptionAttribute("");
   }
 
+  function handleNextClicked() {
+    if (props.state.options.length > 1) {
+      props.setFinishedOptionsClicked(true);
+    } else {
+      toast.warn("Add atleast two options");
+    }
+  }
+
   return (
     <div className="add-options">
-      <h2>Options</h2>
+      <h2>What are the options?</h2>
 
-      <DisplayOptions state={props.state} />
-      <input
-        className="text-input"
-        type="text"
-        placeholder="Lasagna"
-        value={optionAttribute}
-        onChange={(e) => setOptionAttribute(e.target.value)}
-      ></input>
-      <button onClick={() => AddOption()}>Add</button>
+      <div className="options-list-and-add">
+        <input
+          className="text-input"
+          type="text"
+          placeholder="Lasagna"
+          value={optionAttribute}
+          onChange={(e) => setOptionAttribute(e.target.value)}
+        ></input>
+        <button className="add-button" onClick={() => AddOption()}>
+          <GrAddCircle className="add-icon" />
+        </button>
+        <DisplayChoices state={props.state} options={true} />
+      </div>
+
       {!props.finishOptionsClicked && (
-        <button onClick={() => props.setFinishedOptionsClicked(true)}>
+        <button className="next-button" onClick={() => handleNextClicked()}>
           Next
         </button>
       )}

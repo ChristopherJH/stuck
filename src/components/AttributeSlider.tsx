@@ -27,16 +27,20 @@ export function AttributeSlider(props: AttributeSliderProps): JSX.Element {
 
   return (
     <div className="attribute-slider">
+      <div className="attribute-slider-and-number">
+        <input
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          value={weighting}
+          onChange={(e) =>
+            handleOptionWeightingChange(parseInt(e.target.value))
+          }
+        ></input>
+        <p>{weighting}</p>
+      </div>
       <h4>{props.attribute.name}</h4>
-      <input
-        type="range"
-        min="0"
-        max="100"
-        step="1"
-        value={weighting}
-        onChange={(e) => handleOptionWeightingChange(parseInt(e.target.value))}
-      ></input>
-      <p>{weighting}</p>
     </div>
   );
 }

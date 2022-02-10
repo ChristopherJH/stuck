@@ -16,19 +16,25 @@ export default function WeightAttributes(
 ): JSX.Element {
   return (
     <div className="attributes-weights">
-      <h2>Importance of Attributes</h2>
-      {props.state.attributes.map((attribute) => {
-        return (
-          <WeightAttribute
-            attribute={attribute}
-            key={`${attribute.name}-attribute`}
-            dispatch={props.dispatch}
-            state={props.state}
-          />
-        );
-      })}
+      <h2>How important are they?</h2>
+      <div className="attributes-weights-list">
+        {props.state.attributes.map((attribute) => {
+          return (
+            <WeightAttribute
+              attribute={attribute}
+              key={`${attribute.name}-attribute`}
+              dispatch={props.dispatch}
+              state={props.state}
+            />
+          );
+        })}
+      </div>
+
       {!props.WeightAttributesClicked && (
-        <button onClick={() => props.setWeightAttributesClicked(true)}>
+        <button
+          className="next-button"
+          onClick={() => props.setWeightAttributesClicked(true)}
+        >
           Next
         </button>
       )}
