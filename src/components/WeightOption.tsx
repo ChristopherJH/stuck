@@ -14,6 +14,7 @@ export function WeightOption(props: WeightOptionProps): JSX.Element {
       {props.option.attribute_weightings.map((attribute) => {
         return (
           <AttributeSlider
+            key={`attribute-slider-${attribute.name}`}
             option={props.option}
             attribute={attribute}
             dispatch={props.dispatch}

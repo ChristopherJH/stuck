@@ -7,6 +7,7 @@ import { AddAttributes } from "./components/AddAttributes";
 import WeightAttributes from "./components/WeightAttributes";
 import { reducer } from "./utility/reducer";
 import { WeightOptions } from "./components/WeightOptions";
+import { DisplayWinner } from "./components/DisplayWinner";
 
 const initialState: StateType = {
   options: [],
@@ -20,7 +21,9 @@ function App() {
     useState<boolean>(false);
   const [finishAttributesClicked, setFinishedAttributesClicked] =
     useState<boolean>(false);
-  const [WeightAttributesClicked, setWeightAttributesClicked] =
+  const [weightAttributesClicked, setWeightAttributesClicked] =
+    useState<boolean>(false);
+  const [revealWinnerClicked, setRevealWinnerClicked] =
     useState<boolean>(false);
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -54,13 +57,19 @@ function App() {
         <WeightAttributes
           state={state}
           dispatch={dispatch}
-          WeightAttributesClicked={WeightAttributesClicked}
+          WeightAttributesClicked={weightAttributesClicked}
           setWeightAttributesClicked={setWeightAttributesClicked}
         />
       )}
-      {WeightAttributesClicked && (
-        <WeightOptions state={state} dispatch={dispatch} />
+      {weightAttributesClicked && (
+        <WeightOptions
+          state={state}
+          dispatch={dispatch}
+          revealWinnerClicked={revealWinnerClicked}
+          setRevealWinnerClicked={setRevealWinnerClicked}
+        />
       )}
+      {revealWinnerClicked && <DisplayWinner state={state} />}
     </div>
   );
 }
