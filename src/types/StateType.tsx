@@ -1,7 +1,7 @@
 import { Option } from "./Option";
-import { Value } from "./Value";
+import { Attribute } from "./Attribute";
 
 export interface StateType {
   options: Option[];
-  values: Value[];
+  attributes: Attribute[];
 }

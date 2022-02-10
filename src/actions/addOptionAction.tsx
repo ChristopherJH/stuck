@@ -4,7 +4,7 @@ export function addOptionAction(state: StateType, name: string) {
   state.options.push({
     id: new Date(),
     name: name,
-    value_weightings: [],
+    attribute_weightings: [],
   });
   console.log(state);
 }

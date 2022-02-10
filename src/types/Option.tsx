@@ -1,7 +1,7 @@
-import { ValueWeightType } from "./ValueWeightType";
+import { AttributeWeightType } from "./AttributeWeightType";
 
 export interface Option {
   id: Date;
   name: string;
-  value_weightings: ValueWeightType[];
+  attribute_weightings: AttributeWeightType[];
 }

@@ -1,4 +1,4 @@
-export interface ValueWeightType {
+export interface AttributeWeightType {
   name: string;
   weighting: number;
 }

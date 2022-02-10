@@ -3,14 +3,14 @@ import { AddOptions } from "./components/AddOptions";
 import "./App.css";
 import { Header } from "./components/Header";
 import { StateType } from "./types/StateType";
-import { AddValues } from "./components/AddValues";
-import WeightValues from "./components/WeightValues";
+import { AddAttributes } from "./components/AddAttributes";
+import WeightAttributes from "./components/WeightAttributes";
 import { reducer } from "./utility/reducer";
 import { WeightOptions } from "./components/WeightOptions";
 
 const initialState: StateType = {
   options: [],
-  values: [],
+  attributes: [],
 };
 
 function App() {
@@ -18,9 +18,9 @@ function App() {
   const [beginClicked, setBeginClicked] = useState<boolean>(false);
   const [finishOptionsClicked, setFinishedOptionsClicked] =
     useState<boolean>(false);
-  const [finishValuesClicked, setFinishedValuesClicked] =
+  const [finishAttributesClicked, setFinishedAttributesClicked] =
     useState<boolean>(false);
-  const [WeightValuesClicked, setWeightValuesClicked] =
+  const [WeightAttributesClicked, setWeightAttributesClicked] =
     useState<boolean>(false);
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -43,22 +43,24 @@ function App() {
         />
       )}
       {finishOptionsClicked && (
-        <AddValues
+        <AddAttributes
           dispatch={dispatch}
           state={state}
-          setFinishedValuesClicked={setFinishedValuesClicked}
-          finishValuesClicked={finishValuesClicked}
+          setFinishedAttributesClicked={setFinishedAttributesClicked}
+          finishAttributesClicked={finishAttributesClicked}
         />
       )}
-      {finishValuesClicked && (
-        <WeightValues
+      {finishAttributesClicked && (
+        <WeightAttributes
           state={state}
           dispatch={dispatch}
-          WeightValuesClicked={WeightValuesClicked}
-          setWeightValuesClicked={setWeightValuesClicked}
+          WeightAttributesClicked={WeightAttributesClicked}
+          setWeightAttributesClicked={setWeightAttributesClicked}
         />
       )}
-      {WeightValuesClicked && <WeightOptions state={state} />}
+      {WeightAttributesClicked && (
+        <WeightOptions state={state} dispatch={dispatch} />
+      )}
     </div>
   );
 }
