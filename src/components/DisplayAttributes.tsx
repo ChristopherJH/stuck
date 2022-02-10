@@ -7,7 +7,7 @@ interface DisplayAttributesProps {
 // Map through attributes and display each one
 export function DisplayAttributes(props: DisplayAttributesProps): JSX.Element {
   return (
-    <div className="options-list">
+    <div className="attributes-list">
       {props.state.attributes.map((attribute, index) => {
         return <p key={`${attribute.name}-${index}`}>{attribute.name}</p>;
       })}

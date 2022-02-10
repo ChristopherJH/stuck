@@ -13,7 +13,7 @@ interface WeightAttributeProps {
 // A single component where the user can change the weighting of a attribute
 export function WeightAttribute(props: WeightAttributeProps): JSX.Element {
   // State to update slider attributes
-  const [weighting, setWeighting] = useState<number>(1);
+  const [weighting, setWeighting] = useState<number>(50);
 
   // Handler functions for updating the slider weight and changing it in reducer
   function handleWeightingChange(num: number) {
@@ -26,7 +26,7 @@ export function WeightAttribute(props: WeightAttributeProps): JSX.Element {
 
   return (
     <div className="weight-attribute">
-      <h4>Weighting</h4>
+      <h3>{props.attribute.name}</h3>
       <input
         type="range"
         min={0}
@@ -36,7 +36,6 @@ export function WeightAttribute(props: WeightAttributeProps): JSX.Element {
         onChange={(e) => handleWeightingChange(parseInt(e.target.value))}
       ></input>
       <p>{weighting}</p>
-      <h3>{props.attribute.name}</h3>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { Dispatch, useState } from "react";
+import { GrAddCircle } from "react-icons/gr";
 import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
@@ -34,18 +35,27 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
 
   return (
     <div className="add-attributes">
-      <h2>Attributes</h2>
-      <DisplayAttributes state={props.state} />
-      <input
-        className="text-input"
-        type="text"
-        placeholder="Tastiness"
-        value={attributeName}
-        onChange={(e) => setAttributeName(e.target.value)}
-      ></input>
-      <button onClick={() => AddAttribute()}>Add</button>
+      <h2>What's important?</h2>
+
+      <div className="attributes-list-and-add">
+        <input
+          className="text-input"
+          type="text"
+          placeholder="Tastiness"
+          value={attributeName}
+          onChange={(e) => setAttributeName(e.target.value)}
+        ></input>
+        <button className="add-button" onClick={() => AddAttribute()}>
+          <GrAddCircle className="add-icon" />
+        </button>
+        <DisplayAttributes state={props.state} />
+      </div>
+
       {!props.finishAttributesClicked && (
-        <button onClick={() => props.setFinishedAttributesClicked(true)}>
+        <button
+          className="next-button"
+          onClick={() => props.setFinishedAttributesClicked(true)}
+        >
           Next
         </button>
       )}

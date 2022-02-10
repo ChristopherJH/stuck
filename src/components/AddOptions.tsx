@@ -3,6 +3,7 @@ import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
 import { DisplayOptions } from "./DisplayOptions";
+import { GrAddCircle } from "react-icons/gr";
 
 interface AddOptionProps {
   dispatch: Dispatch<Action>;
@@ -34,19 +35,27 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
 
   return (
     <div className="add-options">
-      <h2>Options</h2>
+      <h2>What are the options?</h2>
 
-      <DisplayOptions state={props.state} />
-      <input
-        className="text-input"
-        type="text"
-        placeholder="Lasagna"
-        value={optionAttribute}
-        onChange={(e) => setOptionAttribute(e.target.value)}
-      ></input>
-      <button onClick={() => AddOption()}>Add</button>
+      <div className="options-list-and-add">
+        <input
+          className="text-input"
+          type="text"
+          placeholder="Lasagna"
+          value={optionAttribute}
+          onChange={(e) => setOptionAttribute(e.target.value)}
+        ></input>
+        <button className="add-button" onClick={() => AddOption()}>
+          <GrAddCircle className="add-icon" />
+        </button>
+        <DisplayOptions state={props.state} />
+      </div>
+
       {!props.finishOptionsClicked && (
-        <button onClick={() => props.setFinishedOptionsClicked(true)}>
+        <button
+          className="next-button"
+          onClick={() => props.setFinishedOptionsClicked(true)}
+        >
           Next
         </button>
       )}
