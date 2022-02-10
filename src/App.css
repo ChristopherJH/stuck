@@ -184,3 +184,8 @@ h2 {
 .winner-name {
   margin: 0px;
 }
+
+.reload-button {
+  display: block;
+  margin: 10px 0px 10px auto;
+}

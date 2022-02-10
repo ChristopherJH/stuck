@@ -69,6 +69,10 @@ export function DisplayWinner(props: DisplayWinnerProps): JSX.Element {
     findWinner();
   }, [findWinner]);
 
+  function handleReload() {
+    window.location.reload();
+  }
+
   return (
     <div className="display-winner">
       <div className="winner-details">
@@ -83,6 +87,9 @@ export function DisplayWinner(props: DisplayWinnerProps): JSX.Element {
         <h1 className="winner-name">{winner.name}</h1>
         <h4>Score: {winner.score}</h4>
       </div>
+      <button className="reload-button" onClick={() => handleReload()}>
+        Another decision to make?
+      </button>
     </div>
   );
 }
