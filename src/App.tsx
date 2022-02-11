@@ -1,4 +1,4 @@
-import { useReducer, useRef, useState } from "react";
+import { useReducer } from "react";
 import { AddOptions } from "./components/AddOptions";
 import "./App.css";
 import { Header } from "./components/Header";
@@ -10,64 +10,82 @@ import { WeightOptions } from "./components/WeightOptions";
 import { DisplayWinner } from "./components/DisplayWinner";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { QuestionInput } from "./components/QuestionInput";
+import { Button } from "./types/Button";
+import { buttonsReducer, BUTTON_NAMES } from "./utility/buttonsReducer";
 
+// Initial reducer states
 const initialState: StateType = {
   options: [],
   attributes: [],
+  question: "",
 };
 
+// Initial buttons
+const initialButtonsState: Button[] = [
+  { name: BUTTON_NAMES.SUBMIT_QUESTION, clicked: false },
+  { name: BUTTON_NAMES.SUBMIT_OPTIONS, clicked: false },
+  { name: BUTTON_NAMES.SUBMIT_ATTRIBUTES, clicked: false },
+  { name: BUTTON_NAMES.SUBMIT_ATTRIBUTES_WEIGHTS, clicked: false },
+  { name: BUTTON_NAMES.SUBMIT_OPTIONS_WEIGHTS, clicked: false },
+];
+
 function App() {
-  // States
-  const [finishOptionsClicked, setFinishedOptionsClicked] =
-    useState<boolean>(false);
-  const [finishAttributesClicked, setFinishedAttributesClicked] =
-    useState<boolean>(false);
-  const [weightAttributesClicked, setWeightAttributesClicked] =
-    useState<boolean>(false);
-  const [revealWinnerClicked, setRevealWinnerClicked] =
-    useState<boolean>(false);
-
-  // References for scrolling
-  const addAttributesRef = useRef<null | HTMLDivElement>(null);
-
+  // Reducer for managing button clicks
+  const [buttonsState, buttonsDispatch] = useReducer(
+    buttonsReducer,
+    initialButtonsState
+  );
+  // Reducer for managing options, attributes and question
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <div className="App">
       <Header />
-      <AddOptions
+      <QuestionInput
         dispatch={dispatch}
         state={state}
-        setFinishedOptionsClicked={setFinishedOptionsClicked}
-        finishOptionsClicked={finishOptionsClicked}
-        addAttributesRef={addAttributesRef}
+        buttonsDispatch={buttonsDispatch}
       />
+      {/* If previous stage has been completed, reveal next */}
+      {buttonsState[0].clicked && (
+        <AddOptions
+          dispatch={dispatch}
+          state={state}
+          buttonsDispatch={buttonsDispatch}
+          buttonsState={buttonsState}
+        />
+      )}
 
-      <AddAttributes
-        dispatch={dispatch}
-        state={state}
-        setFinishedAttributesClicked={setFinishedAttributesClicked}
-        finishAttributesClicked={finishAttributesClicked}
-        addAttributesRef={addAttributesRef}
-      />
+      {buttonsState[1].clicked && (
+        <AddAttributes
+          dispatch={dispatch}
+          state={state}
+          buttonsDispatch={buttonsDispatch}
+          buttonsState={buttonsState}
+        />
+      )}
 
-      {finishAttributesClicked && (
+      {buttonsState[2].clicked && (
         <WeightAttributes
           state={state}
           dispatch={dispatch}
-          WeightAttributesClicked={weightAttributesClicked}
-          setWeightAttributesClicked={setWeightAttributesClicked}
+          buttonsDispatch={buttonsDispatch}
+          buttonsState={buttonsState}
         />
       )}
-      {weightAttributesClicked && (
+
+      {buttonsState[3].clicked && (
         <WeightOptions
           state={state}
           dispatch={dispatch}
-          revealWinnerClicked={revealWinnerClicked}
-          setRevealWinnerClicked={setRevealWinnerClicked}
+          buttonsDispatch={buttonsDispatch}
+          buttonsState={buttonsState}
         />
       )}
-      {revealWinnerClicked && <DisplayWinner state={state} />}
+
+      {buttonsState[4].clicked && <DisplayWinner state={state} />}
+
       <ToastContainer
         position="top-right"
         autoClose={5000}

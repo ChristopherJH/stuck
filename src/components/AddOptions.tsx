@@ -1,50 +1,46 @@
-import { Dispatch, MutableRefObject, useState } from "react";
+import { Dispatch, useState } from "react";
 import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
 import { GrAddCircle } from "react-icons/gr";
 import { DisplayChoices } from "./DisplayChoices";
 import { toast } from "react-toastify";
+import { ButtonAction } from "../types/ButtonAction";
+import { Button } from "../types/Button";
+import { BUTTON_NAMES } from "../utility/buttonsReducer";
+import { notDuplicateOrEmpty } from "../utility/notDuplicateOrEmpty";
 
 interface AddOptionProps {
   dispatch: Dispatch<Action>;
   state: StateType;
-  setFinishedOptionsClicked: (input: boolean) => void;
-  finishOptionsClicked: boolean;
-  addAttributesRef: MutableRefObject<HTMLDivElement | null>;
+  buttonsDispatch: Dispatch<ButtonAction>;
+  buttonsState: Button[];
 }
 export function AddOptions(props: AddOptionProps): JSX.Element {
-  const [optionAttribute, setOptionAttribute] = useState<string>("");
+  const [optionName, setOptionName] = useState<string>("");
 
   // Handler function for adding a new option
   function AddOption() {
     // Check whether a duplicate option or empty
-    if (
-      props.state.options.find((option) => option.name === optionAttribute) ===
-        undefined &&
-      optionAttribute !== ""
-    ) {
+    if (notDuplicateOrEmpty(props.state, optionName, true)) {
       props.dispatch({
         type: ACTIONS.ADD_OPTION,
-        payload: optionAttribute,
+        payload: optionName,
       });
     } else {
-      console.log("Option already exists");
+      toast.warn("Invalid option");
     }
     // Reset attribute
-    setOptionAttribute("");
+    setOptionName("");
   }
 
+  // Reveals next component if enough options given
   function handleNextClicked() {
     if (props.state.options.length > 1) {
-      props.setFinishedOptionsClicked(true);
-      if (props.addAttributesRef.current) {
-        props.addAttributesRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-          inline: "nearest",
-        });
-      }
+      props.buttonsDispatch({
+        type: "click",
+        payload: BUTTON_NAMES.SUBMIT_OPTIONS,
+      });
     } else {
       toast.warn("Add atleast two options");
     }
@@ -58,9 +54,9 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
         <input
           className="text-input"
           type="text"
-          placeholder="Lasagna"
-          value={optionAttribute}
-          onChange={(e) => setOptionAttribute(e.target.value)}
+          placeholder="E.g. Lasagna, Curry, Pizza"
+          value={optionName}
+          onChange={(e) => setOptionName(e.target.value)}
         ></input>
         <button className="add-button" onClick={() => AddOption()}>
           <GrAddCircle className="add-icon" />
@@ -68,9 +64,9 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
         <DisplayChoices state={props.state} options={true} />
       </div>
 
-      {!props.finishOptionsClicked && (
+      {!props.buttonsState[1].clicked && (
         <button className="next-button" onClick={() => handleNextClicked()}>
-          Next
+          <strong>Next</strong>
         </button>
       )}
     </div>

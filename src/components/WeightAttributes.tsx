@@ -1,31 +1,26 @@
-import { Dispatch, useState } from "react";
-import { HiOutlineRefresh } from "react-icons/hi";
+import { Dispatch } from "react";
+import { BUTTON_NAMES } from "../utility/buttonsReducer";
 import { Action } from "../types/Action";
+import { Button } from "../types/Button";
+import { ButtonAction } from "../types/ButtonAction";
 import { StateType } from "../types/StateType";
 import { WeightAttribute } from "./WeightAttribute";
 
 interface WeightAttributessProps {
   state: StateType;
   dispatch: Dispatch<Action>;
-  WeightAttributesClicked: boolean;
-  setWeightAttributesClicked: (input: boolean) => void;
+  buttonsDispatch: Dispatch<ButtonAction>;
+  buttonsState: Button[];
 }
 
 // Renders components where user can change weightings of attributes
 export default function WeightAttributes(
   props: WeightAttributessProps
 ): JSX.Element {
-  // State for refreshing page
-  const [refresh, setRefresh] = useState(false);
-
   return (
     <div className="attributes-weights">
-      <div className="attributes-weights-title-and-refresh">
-        <h2>How important are they?</h2>
-        <button className="refresh-button" onClick={() => setRefresh(!refresh)}>
-          <HiOutlineRefresh />
-        </button>
-      </div>
+      <h2>How important are they?</h2>
+      <h3>(Higher is better)</h3>
 
       <div className="attributes-weights-list">
         {props.state.attributes.map((attribute) => {
@@ -40,12 +35,17 @@ export default function WeightAttributes(
         })}
       </div>
 
-      {!props.WeightAttributesClicked && (
+      {!props.buttonsState[3].clicked && (
         <button
           className="next-button"
-          onClick={() => props.setWeightAttributesClicked(true)}
+          onClick={() =>
+            props.buttonsDispatch({
+              type: "click",
+              payload: BUTTON_NAMES.SUBMIT_ATTRIBUTES_WEIGHTS,
+            })
+          }
         >
-          Next
+          <strong>Next</strong>
         </button>
       )}
     </div>

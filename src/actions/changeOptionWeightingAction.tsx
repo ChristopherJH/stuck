@@ -6,8 +6,10 @@ export function changeOptionWeightingAction(
   attributeName: string,
   weighting: number
 ): StateType {
+  // Create a copy of the state
+  const newState: StateType = JSON.parse(JSON.stringify(state));
   // Find option
-  const option = state.options.find((option) => option.name === optionName);
+  const option = newState.options.find((option) => option.name === optionName);
   // Find attribute
   const attribute = option?.attribute_weightings.find(
     (attribute) => attribute.name === attributeName
@@ -17,6 +19,6 @@ export function changeOptionWeightingAction(
   if (attribute !== undefined) {
     attribute["weighting"] = weighting;
   }
-  console.log(state);
-  return state;
+  console.log(newState);
+  return newState;
 }

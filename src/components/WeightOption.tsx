@@ -7,6 +7,7 @@ interface WeightOptionProps {
   option: Option;
   dispatch: Dispatch<Action>;
 }
+
 export function WeightOption(props: WeightOptionProps): JSX.Element {
   return (
     <div className="weight-option">

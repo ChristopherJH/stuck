@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Option } from "../types/Option";
 import { StateType } from "../types/StateType";
-import { HiOutlineRefresh } from "react-icons/hi";
 
 interface DisplayWinnerProps {
   state: StateType;
@@ -17,7 +16,6 @@ const initialWinner = { name: "Unknown", score: 0 };
 export function DisplayWinner(props: DisplayWinnerProps): JSX.Element {
   const [optionsScores, setOptionsScores] = useState<number[]>([]);
   const [winner, setWinner] = useState<Winner>(initialWinner);
-  const [refreshClicked, setRefreshClicked] = useState<boolean>(false);
 
   // Calculate the total score for an option
   function calculateScore(option: Option): number {
@@ -62,7 +60,7 @@ export function DisplayWinner(props: DisplayWinnerProps): JSX.Element {
   // Calculate the new scores on first load and whenever refresh is clicked
   useEffect(() => {
     calculateScores();
-  }, [calculateScores, refreshClicked]);
+  }, [calculateScores]);
 
   // Find winner whenever option scores array changes
   useEffect(() => {
@@ -76,15 +74,9 @@ export function DisplayWinner(props: DisplayWinnerProps): JSX.Element {
   return (
     <div className="display-winner">
       <div className="winner-details">
-        <button
-          className="refresh-button"
-          onClick={() => setRefreshClicked(!refreshClicked)}
-        >
-          <HiOutlineRefresh />
-        </button>
-        <h2>🏆 Winner 🏆</h2>
+        <h2>{props.state.question}</h2>
 
-        <h1 className="winner-name">{winner.name}</h1>
+        <h1 className="winner-name">🏆 {winner.name} 🏆</h1>
         <h4>Score: {winner.score}</h4>
       </div>
       <button className="reload-button" onClick={() => handleReload()}>
