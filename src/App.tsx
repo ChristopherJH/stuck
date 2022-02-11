@@ -12,22 +12,16 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { QuestionInput } from "./components/QuestionInput";
 import { Button } from "./types/Button";
-import { buttonsReducer } from "./utility/buttonsReducer";
+import { buttonsReducer, BUTTON_NAMES } from "./utility/buttonsReducer";
 
+// Initial reducer states
 const initialState: StateType = {
   options: [],
   attributes: [],
   question: "",
 };
 
-export const BUTTON_NAMES = {
-  SUBMIT_QUESTION: "submitQuestion",
-  SUBMIT_OPTIONS: "submitOptions",
-  SUBMIT_ATTRIBUTES: "submitAttributes",
-  SUBMIT_ATTRIBUTES_WEIGHTS: "submitAttributesWeights",
-  SUBMIT_OPTIONS_WEIGHTS: "submitOptionsWeights",
-};
-
+// Initial buttons
 const initialButtonsState: Button[] = [
   { name: BUTTON_NAMES.SUBMIT_QUESTION, clicked: false },
   { name: BUTTON_NAMES.SUBMIT_OPTIONS, clicked: false },
@@ -53,6 +47,7 @@ function App() {
         state={state}
         buttonsDispatch={buttonsDispatch}
       />
+      {/* If previous stage has been completed, reveal next */}
       {buttonsState[0].clicked && (
         <AddOptions
           dispatch={dispatch}
@@ -79,6 +74,7 @@ function App() {
           buttonsState={buttonsState}
         />
       )}
+
       {buttonsState[3].clicked && (
         <WeightOptions
           state={state}
@@ -87,7 +83,9 @@ function App() {
           buttonsState={buttonsState}
         />
       )}
+
       {buttonsState[4].clicked && <DisplayWinner state={state} />}
+
       <ToastContainer
         position="top-right"
         autoClose={5000}

@@ -8,8 +8,8 @@ test("Renders title element", () => {
   expect(titleElement).toBeInTheDocument();
 });
 
-test("Renders options selector element", () => {
+test("Renders question input element", () => {
   render(<App />);
-  const optionsElement = screen.getByText("What are the options?");
-  expect(optionsElement).toBeInTheDocument();
+  const questionInputElement = screen.getByText("What are you stuck on?");
+  expect(questionInputElement).toBeInTheDocument();
 });

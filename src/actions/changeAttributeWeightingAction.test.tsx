@@ -2,11 +2,10 @@ import { Attribute } from "../types/Attribute";
 import { Option } from "../types/Option";
 import { StateType } from "../types/StateType";
 import { testInputState } from "../utility/testInputState";
-import { addOptionAction } from "./addOptionAction";
+import { changeAttributeWeightingAction } from "./changeAttributeWeightingAction";
 
 const tastiness = { name: "Tastiness", weighting: 50 };
 const cost = { name: "Cost", weighting: 50 };
-const tastinessAttribute = { id: 0, name: "Tastiness", weighting: 50 };
 const costAttribute = { id: 1, name: "Cost", weighting: 50 };
 
 const pizza = {
@@ -22,15 +21,14 @@ const chinese = {
 };
 
 // Create output state
-const padThai = {
-  id: 2,
-  name: "Pad thai",
-  attribute_weightings: [tastiness, cost],
-};
+const outputTastinessAttribute = { id: 0, name: "Tastiness", weighting: 40 };
 
-const outputOptionsArr: Option[] = [pizza, chinese, padThai];
+const outputOptionsArr: Option[] = [pizza, chinese];
 
-const outputAttributesArr: Attribute[] = [tastinessAttribute, costAttribute];
+const outputAttributesArr: Attribute[] = [
+  outputTastinessAttribute,
+  costAttribute,
+];
 
 const outputState: StateType = {
   options: outputOptionsArr,
@@ -38,8 +36,8 @@ const outputState: StateType = {
   question: "What should I eat tonight?",
 };
 
-test("Adding pad thai option to a state alters the state", () => {
-  expect(addOptionAction(testInputState, "Pad thai")).toStrictEqual(
-    outputState
-  );
+test("Adjusting attribute weighting alters the state", () => {
+  expect(
+    changeAttributeWeightingAction(testInputState, "Tastiness", 40)
+  ).toStrictEqual(outputState);
 });

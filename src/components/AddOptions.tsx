@@ -7,7 +7,8 @@ import { DisplayChoices } from "./DisplayChoices";
 import { toast } from "react-toastify";
 import { ButtonAction } from "../types/ButtonAction";
 import { Button } from "../types/Button";
-import { BUTTON_NAMES } from "../App";
+import { BUTTON_NAMES } from "../utility/buttonsReducer";
+import { notDuplicateOrEmpty } from "../utility/notDuplicateOrEmpty";
 
 interface AddOptionProps {
   dispatch: Dispatch<Action>;
@@ -16,27 +17,24 @@ interface AddOptionProps {
   buttonsState: Button[];
 }
 export function AddOptions(props: AddOptionProps): JSX.Element {
-  const [optionAttribute, setOptionAttribute] = useState<string>("");
+  const [optionName, setOptionName] = useState<string>("");
 
   // Handler function for adding a new option
   function AddOption() {
     // Check whether a duplicate option or empty
-    if (
-      props.state.options.find((option) => option.name === optionAttribute) ===
-        undefined &&
-      optionAttribute !== ""
-    ) {
+    if (notDuplicateOrEmpty(props.state, optionName, true)) {
       props.dispatch({
         type: ACTIONS.ADD_OPTION,
-        payload: optionAttribute,
+        payload: optionName,
       });
     } else {
-      console.log("Option already exists");
+      toast.warn("Invalid option");
     }
     // Reset attribute
-    setOptionAttribute("");
+    setOptionName("");
   }
 
+  // Reveals next component if enough options given
   function handleNextClicked() {
     if (props.state.options.length > 1) {
       props.buttonsDispatch({
@@ -57,8 +55,8 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
           className="text-input"
           type="text"
           placeholder="E.g. Lasagna, Curry, Pizza"
-          value={optionAttribute}
-          onChange={(e) => setOptionAttribute(e.target.value)}
+          value={optionName}
+          onChange={(e) => setOptionName(e.target.value)}
         ></input>
         <button className="add-button" onClick={() => AddOption()}>
           <GrAddCircle className="add-icon" />

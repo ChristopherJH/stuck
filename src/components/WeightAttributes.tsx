@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { BUTTON_NAMES } from "../App";
+import { BUTTON_NAMES } from "../utility/buttonsReducer";
 import { Action } from "../types/Action";
 import { Button } from "../types/Button";
 import { ButtonAction } from "../types/ButtonAction";

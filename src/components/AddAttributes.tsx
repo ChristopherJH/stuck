@@ -1,13 +1,14 @@
 import { Dispatch, useState } from "react";
 import { GrAddCircle } from "react-icons/gr";
 import { toast } from "react-toastify";
-import { BUTTON_NAMES } from "../App";
+import { BUTTON_NAMES } from "../utility/buttonsReducer";
 import { Action } from "../types/Action";
 import { Button } from "../types/Button";
 import { ButtonAction } from "../types/ButtonAction";
 import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
 import { DisplayChoices } from "./DisplayChoices";
+import { notDuplicateOrEmpty } from "../utility/notDuplicateOrEmpty";
 
 interface AddattributeProps {
   dispatch: Dispatch<Action>;
@@ -21,21 +22,18 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
   // Handler function for adding a new attribute
   function AddAttribute() {
     // Check whether a duplicate attribute or empty
-
-    if (
-      props.state.attributes.find((option) => option.name === attributeName) ===
-        undefined &&
-      attributeName !== ""
-    ) {
+    if (notDuplicateOrEmpty(props.state, attributeName, false)) {
       props.dispatch({
         type: ACTIONS.ADD_ATTRIBUTE,
         payload: attributeName,
       });
     } else {
-      console.log("Attribute already exists");
+      toast.warn("Invalid option");
     }
     setAttributeName("");
   }
+
+  // Reveals next component if enough attributes given
   function handleNextClicked() {
     if (props.state.attributes.length > 1) {
       props.buttonsDispatch({

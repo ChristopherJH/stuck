@@ -2,9 +2,9 @@ import { Dispatch } from "react";
 import { StateType } from "../types/StateType";
 import { Action } from "../types/Action";
 import { WeightOption } from "./WeightOption";
-import { BUTTON_NAMES } from "../App";
 import { Button } from "../types/Button";
 import { ButtonAction } from "../types/ButtonAction";
+import { BUTTON_NAMES } from "../utility/buttonsReducer";
 
 interface WeightOptionsProps {
   state: StateType;
@@ -16,7 +16,6 @@ export function WeightOptions(props: WeightOptionsProps): JSX.Element {
   return (
     <div className="weight-options">
       <h2>Weigh up your options...</h2>
-
       <div className="options-weights-list">
         {props.state.options.map((option) => {
           return (

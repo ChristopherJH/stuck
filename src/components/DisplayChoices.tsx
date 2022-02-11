@@ -7,7 +7,7 @@ interface DisplayChoicesProps {
   options: boolean;
 }
 
-// Map through attributes and display each one
+// Map through attributes or options and display each one
 export function DisplayChoices(props: DisplayChoicesProps): JSX.Element {
   let choices: Option[] | Attribute[];
   if (props.options) {
