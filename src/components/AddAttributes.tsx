@@ -1,5 +1,4 @@
-import { Dispatch, useState } from "react";
-import { GrAddCircle } from "react-icons/gr";
+import { Dispatch, FormEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { BUTTON_NAMES } from "../utility/buttonsReducer";
 import { Action } from "../types/Action";
@@ -20,7 +19,12 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
   const [attributeName, setAttributeName] = useState<string>("");
 
   // Handler function for adding a new attribute
-  function AddAttribute() {
+  function AddAttribute(
+    e:
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+      | FormEvent<HTMLFormElement>
+  ) {
+    e.preventDefault();
     // Check whether a duplicate attribute or empty
     if (notDuplicateOrEmpty(props.state, attributeName, false)) {
       props.dispatch({
@@ -50,16 +54,16 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
       <h2>What's important?</h2>
 
       <div className="attributes-list-and-add">
-        <input
-          className="text-input"
-          type="text"
-          placeholder="E.g. Tastiness, Affordability, Healthiness"
-          value={attributeName}
-          onChange={(e) => setAttributeName(e.target.value)}
-        ></input>
-        <button className="add-button" onClick={() => AddAttribute()}>
-          <GrAddCircle className="add-icon" />
-        </button>
+        <form onSubmit={(e) => AddAttribute(e)}>
+          <input
+            className="text-input"
+            type="text"
+            placeholder="E.g. Tastiness, Affordability, Healthiness"
+            value={attributeName}
+            onChange={(e) => setAttributeName(e.target.value)}
+          ></input>
+        </form>
+
         <DisplayChoices state={props.state} options={false} />
       </div>
 
