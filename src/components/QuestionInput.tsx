@@ -1,4 +1,4 @@
-import { Dispatch, useState } from "react";
+import { Dispatch, FormEvent, useState } from "react";
 import { ButtonAction } from "../types/ButtonAction";
 import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
@@ -14,7 +14,12 @@ interface QuestionInputProps {
 export function QuestionInput(props: QuestionInputProps): JSX.Element {
   const [inputValue, setInputValue] = useState<string>("");
 
-  function handleSubmit() {
+  function handleSubmit(
+    e:
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+      | FormEvent<HTMLFormElement>
+  ) {
+    e.preventDefault();
     if (inputValue !== "") {
       props.dispatch({
         type: ACTIONS.ADD_QUESTION,
@@ -30,16 +35,16 @@ export function QuestionInput(props: QuestionInputProps): JSX.Element {
   return (
     <div className="question-input">
       <h2>What are you stuck on?</h2>
-      <input
-        className="text-input"
-        type="text"
-        placeholder="E.g. What should I eat tonight?"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      ></input>
-      <button onClick={() => handleSubmit()}>
-        <strong>Add</strong>
-      </button>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <input
+          className="text-input"
+          type="text"
+          placeholder="E.g. What should I eat tonight?"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        ></input>
+      </form>
+      <h3>{props.state.question}</h3>
     </div>
   );
 }

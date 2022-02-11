@@ -14,7 +14,7 @@ button:hover {
 }
 
 .text-input {
-  width: 75%;
+  width: 100%;
   padding: 10px;
   font-size: large;
   background-color: transparent;
@@ -76,19 +76,6 @@ h2 {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.question-input input {
-  width: 90%;
-  margin-right: 5px;
-}
-
-.question-input button {
-  border-bottom: none;
-}
-
-.question-input button:focus {
-  border-bottom: none;
-}
-
 /* Add options and attributes */
 
 .add-options,
@@ -104,18 +91,19 @@ h2 {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.add-button,
 .refresh-button {
-  position: relative;
-  top: 5px;
   border-bottom: 0px;
   cursor: pointer;
   font-size: x-large;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 6px 5px 2px;
+  border-radius: 40px;
+  margin-left: 10px;
 }
 
-.add-button:hover,
 .refresh-button:hover {
   border-bottom: 0px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 4px 10px 0px;
 }
 
 .next-button {
@@ -129,7 +117,7 @@ h2 {
   margin: auto;
   background-color: #fafbfb;
   margin: 20px auto;
-  padding: 40px 0px 40px 40px;
+  padding: 40px;
   border-radius: 20px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   min-height: 30vh;
@@ -137,7 +125,6 @@ h2 {
 
 .choices-list {
   font-size: large;
-  width: 80%;
 }
 
 .choices-list p {

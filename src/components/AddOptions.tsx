@@ -1,8 +1,7 @@
-import { Dispatch, useState } from "react";
+import { Dispatch, FormEvent, useState } from "react";
 import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
-import { GrAddCircle } from "react-icons/gr";
 import { DisplayChoices } from "./DisplayChoices";
 import { toast } from "react-toastify";
 import { ButtonAction } from "../types/ButtonAction";
@@ -20,7 +19,12 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
   const [optionName, setOptionName] = useState<string>("");
 
   // Handler function for adding a new option
-  function AddOption() {
+  function AddOption(
+    e:
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+      | FormEvent<HTMLFormElement>
+  ) {
+    e.preventDefault();
     // Check whether a duplicate option or empty
     if (notDuplicateOrEmpty(props.state, optionName, true)) {
       props.dispatch({
@@ -51,16 +55,16 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
       <h2>What are the options?</h2>
 
       <div className="options-list-and-add">
-        <input
-          className="text-input"
-          type="text"
-          placeholder="E.g. Lasagna, Curry, Pizza"
-          value={optionName}
-          onChange={(e) => setOptionName(e.target.value)}
-        ></input>
-        <button className="add-button" onClick={() => AddOption()}>
-          <GrAddCircle className="add-icon" />
-        </button>
+        <form onSubmit={(e) => AddOption(e)}>
+          <input
+            className="text-input"
+            type="text"
+            placeholder="E.g. Lasagna, Curry, Pizza"
+            value={optionName}
+            onChange={(e) => setOptionName(e.target.value)}
+          ></input>
+        </form>
+
         <DisplayChoices state={props.state} options={true} />
       </div>
 
