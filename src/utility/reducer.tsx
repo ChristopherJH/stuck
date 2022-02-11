@@ -15,35 +15,36 @@ export const ACTIONS = {
 
 // Reducer function for useReduce
 export function reducer(state: StateType, action: Action): StateType {
+  let newState: StateType;
   switch (action.type) {
     // Add a new option
     case ACTIONS.ADD_OPTION:
-      addOptionAction(state, action.payload);
-      return state;
+      newState = addOptionAction(state, action.payload);
+      return newState;
 
     // Add a new attribute
     case ACTIONS.ADD_ATTRIBUTE:
-      addAttributeAction(state, action.payload);
-      return state;
+      newState = addAttributeAction(state, action.payload);
+      return newState;
 
     // Change the weighting of a attribute
     case ACTIONS.CHANGE_attribute_WEIGHTING:
-      changeAttributeWeightingAction(
+      newState = changeAttributeWeightingAction(
         state,
         action.payload.name,
         action.payload.weighting
       );
-      return state;
+      return newState;
 
     // Change the weighting of of a certain attribute on an option
     case ACTIONS.CHANGE_OPTION_WEIGHTING:
-      changeOptionWeightingAction(
+      newState = changeOptionWeightingAction(
         state,
         action.payload.optionName,
         action.payload.attributeName,
         action.payload.weighting
       );
-      return state;
+      return newState;
     default:
       return state;
   }

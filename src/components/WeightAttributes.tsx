@@ -15,17 +15,9 @@ interface WeightAttributessProps {
 export default function WeightAttributes(
   props: WeightAttributessProps
 ): JSX.Element {
-  // State for refreshing page
-  const [refresh, setRefresh] = useState(false);
-
   return (
     <div className="attributes-weights">
-      <div className="attributes-weights-title-and-refresh">
-        <h2>How important are they?</h2>
-        <button className="refresh-button" onClick={() => setRefresh(!refresh)}>
-          <HiOutlineRefresh />
-        </button>
-      </div>
+      <h2>How important are they?</h2>
 
       <div className="attributes-weights-list">
         {props.state.attributes.map((attribute) => {

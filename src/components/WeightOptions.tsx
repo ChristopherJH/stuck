@@ -11,17 +11,9 @@ interface WeightOptionsProps {
   revealWinnerClicked: boolean;
 }
 export function WeightOptions(props: WeightOptionsProps): JSX.Element {
-  // State for refreshing page
-  const [refresh, setRefresh] = useState(false);
-
   return (
     <div className="weight-options">
-      <div className="weight-options-title-and-refresh">
-        <h2>Weigh up your options...</h2>
-        <button className="refresh-button" onClick={() => setRefresh(!refresh)}>
-          <HiOutlineRefresh />
-        </button>
-      </div>
+      <h2>Weigh up your options...</h2>
 
       <div className="options-weights-list">
         {props.state.options.map((option) => {

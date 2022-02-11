@@ -22,9 +22,8 @@ button:hover {
   outline: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
-  box-shadow: none;
-  border-bottom: #0d0d0e solid 1px;
-  border-radius: 0px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
 }
 
 .text-input:focus {
@@ -78,6 +77,8 @@ h2 {
 
 .add-button,
 .refresh-button {
+  position: relative;
+  top: 5px;
   border-bottom: 0px;
   cursor: pointer;
   font-size: x-large;

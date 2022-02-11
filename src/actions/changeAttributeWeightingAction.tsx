@@ -5,13 +5,15 @@ export function changeAttributeWeightingAction(
   name: string,
   weighting: number
 ): StateType {
-  const attribute = state.attributes.find(
+  // Create a copy of the state
+  const newState: StateType = JSON.parse(JSON.stringify(state));
+  const attribute = newState.attributes.find(
     (attribute) => attribute.name === name
   );
 
   if (attribute !== undefined) {
     attribute["weighting"] = weighting;
   }
-  console.log(state);
-  return state;
+  console.log(newState);
+  return newState;
 }
