@@ -49,6 +49,11 @@ h2 {
 .header-subheaders {
   display: flex;
   color: #2196f3;
+  flex-wrap: wrap;
+}
+
+.header-subheaders h3 {
+  margin: 0px 15px 0px 0px;
 }
 
 .header-questions {
@@ -58,6 +63,30 @@ h2 {
 .begin-button {
   font-size: 32px;
   margin: auto;
+}
+
+/* Question input */
+
+.question-input {
+  padding: 50px;
+  justify-content: center;
+  border-radius: 20px;
+  margin: 100px auto 0px;
+  width: 80%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.question-input input {
+  width: 90%;
+  margin-right: 5px;
+}
+
+.question-input button {
+  border-bottom: none;
+}
+
+.question-input button:focus {
+  border-bottom: none;
 }
 
 /* Add options and attributes */
@@ -70,7 +99,7 @@ h2 {
   padding: 50px;
   justify-content: center;
   border-radius: 20px;
-  margin: 200px auto 200px;
+  margin: 100px auto 100px;
   width: 80%;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -125,6 +154,14 @@ h2 {
   justify-content: center;
 }
 
+.attributes-weights h2 {
+  margin: 0px;
+}
+
+.attributes-weights h3 {
+  margin: 0px;
+}
+
 .slider {
   min-width: 200px;
 }
@@ -146,6 +183,10 @@ h2 {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+.weight-attribute h3 {
+  margin-bottom: 20px;
+}
+
 .weight-option h3 {
   font-size: x-large;
 }
@@ -155,13 +196,8 @@ h2 {
   margin: 0px 0px 10px;
 }
 
-.attribute-slider-and-number {
-  display: flex;
-}
-
-.attribute-slider-and-number p {
-  margin-left: 10px;
-  width: 30px;
+.attribute-slider h4 {
+  margin-top: 10px;
 }
 
 /* Display Winner */

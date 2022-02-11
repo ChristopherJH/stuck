@@ -28,6 +28,7 @@ const inputAttributesArr: Attribute[] = [tastinessAttribute, costAttribute];
 const inputState: StateType = {
   options: inputOptionsArr,
   attributes: inputAttributesArr,
+  question: "What should I eat tonight?",
 };
 
 // Create output state
@@ -44,6 +45,7 @@ const outputAttributesArr: Attribute[] = [tastinessAttribute, costAttribute];
 const outputState: StateType = {
   options: outputOptionsArr,
   attributes: outputAttributesArr,
+  question: "What should I eat tonight?",
 };
 
 test("Adding pad thai option to a state alters the state", () => {

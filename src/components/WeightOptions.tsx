@@ -1,14 +1,16 @@
-import { Dispatch, useState } from "react";
+import { Dispatch } from "react";
 import { StateType } from "../types/StateType";
 import { Action } from "../types/Action";
 import { WeightOption } from "./WeightOption";
-import { HiOutlineRefresh } from "react-icons/hi";
+import { BUTTON_NAMES } from "../App";
+import { Button } from "../types/Button";
+import { ButtonAction } from "../types/ButtonAction";
 
 interface WeightOptionsProps {
   state: StateType;
   dispatch: Dispatch<Action>;
-  setRevealWinnerClicked: (input: boolean) => void;
-  revealWinnerClicked: boolean;
+  buttonsDispatch: Dispatch<ButtonAction>;
+  buttonsState: Button[];
 }
 export function WeightOptions(props: WeightOptionsProps): JSX.Element {
   return (
@@ -27,10 +29,15 @@ export function WeightOptions(props: WeightOptionsProps): JSX.Element {
         })}
       </div>
 
-      {!props.revealWinnerClicked && (
+      {!props.buttonsState[4].clicked && (
         <button
           className="reveal-winner-button"
-          onClick={() => props.setRevealWinnerClicked(true)}
+          onClick={() =>
+            props.buttonsDispatch({
+              type: "click",
+              payload: BUTTON_NAMES.SUBMIT_OPTIONS_WEIGHTS,
+            })
+          }
         >
           <strong>Reveal Winner</strong>
         </button>

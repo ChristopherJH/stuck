@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Option } from "../types/Option";
 import { StateType } from "../types/StateType";
-import { HiOutlineRefresh } from "react-icons/hi";
 
 interface DisplayWinnerProps {
   state: StateType;
@@ -75,9 +74,9 @@ export function DisplayWinner(props: DisplayWinnerProps): JSX.Element {
   return (
     <div className="display-winner">
       <div className="winner-details">
-        <h2>🏆 Winner 🏆</h2>
+        <h2>{props.state.question}</h2>
 
-        <h1 className="winner-name">{winner.name}</h1>
+        <h1 className="winner-name">🏆 {winner.name} 🏆</h1>
         <h4>Score: {winner.score}</h4>
       </div>
       <button className="reload-button" onClick={() => handleReload()}>

@@ -1,4 +1,4 @@
-import { Dispatch, useState } from "react";
+import { Dispatch } from "react";
 import { Option } from "../types/Option";
 import { AttributeWeightType } from "../types/AttributeWeightType";
 import { Action } from "../types/Action";
@@ -11,10 +11,7 @@ interface AttributeSliderProps {
 }
 
 export function AttributeSlider(props: AttributeSliderProps): JSX.Element {
-  const [weighting, setWeighting] = useState<number>(props.attribute.weighting);
-
   function handleOptionWeightingChange(num: number) {
-    setWeighting(num);
     props.dispatch({
       type: ACTIONS.CHANGE_OPTION_WEIGHTING,
       payload: {
@@ -27,21 +24,18 @@ export function AttributeSlider(props: AttributeSliderProps): JSX.Element {
 
   return (
     <div className="attribute-slider">
-      <div className="attribute-slider-and-number">
-        <input
-          type="range"
-          className="slider"
-          min="0"
-          max="100"
-          step="1"
-          value={weighting}
-          onChange={(e) =>
-            handleOptionWeightingChange(parseInt(e.target.value))
-          }
-        ></input>
-        <p>{weighting}</p>
-      </div>
-      <h4>{props.attribute.name}</h4>
+      <input
+        type="range"
+        className="slider"
+        min="0"
+        max="100"
+        step="1"
+        value={props.attribute.weighting}
+        onChange={(e) => handleOptionWeightingChange(parseInt(e.target.value))}
+      ></input>
+      <h4>
+        {props.attribute.name}: {props.attribute.weighting}
+      </h4>
     </div>
   );
 }

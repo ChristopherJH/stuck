@@ -11,6 +11,7 @@ export const ACTIONS = {
   ADD_ATTRIBUTE: "add-attribute",
   CHANGE_attribute_WEIGHTING: "change-attribute-weighting",
   CHANGE_OPTION_WEIGHTING: "change-option-weighting",
+  ADD_QUESTION: "add-question",
 };
 
 // Reducer function for useReduce
@@ -44,6 +45,11 @@ export function reducer(state: StateType, action: Action): StateType {
         action.payload.attributeName,
         action.payload.weighting
       );
+      return newState;
+    // Add question to be answered
+    case ACTIONS.ADD_QUESTION:
+      newState = JSON.parse(JSON.stringify(state));
+      newState.question = action.payload.question;
       return newState;
     default:
       return state;

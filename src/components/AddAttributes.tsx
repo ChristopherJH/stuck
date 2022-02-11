@@ -1,7 +1,10 @@
-import { Dispatch, MutableRefObject, useState } from "react";
+import { Dispatch, useState } from "react";
 import { GrAddCircle } from "react-icons/gr";
 import { toast } from "react-toastify";
+import { BUTTON_NAMES } from "../App";
 import { Action } from "../types/Action";
+import { Button } from "../types/Button";
+import { ButtonAction } from "../types/ButtonAction";
 import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
 import { DisplayChoices } from "./DisplayChoices";
@@ -9,9 +12,8 @@ import { DisplayChoices } from "./DisplayChoices";
 interface AddattributeProps {
   dispatch: Dispatch<Action>;
   state: StateType;
-  setFinishedAttributesClicked: (input: boolean) => void;
-  finishAttributesClicked: boolean;
-  addAttributesRef: MutableRefObject<HTMLDivElement | null>;
+  buttonsDispatch: Dispatch<ButtonAction>;
+  buttonsState: Button[];
 }
 export function AddAttributes(props: AddattributeProps): JSX.Element {
   const [attributeName, setAttributeName] = useState<string>("");
@@ -36,7 +38,10 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
   }
   function handleNextClicked() {
     if (props.state.attributes.length > 1) {
-      props.setFinishedAttributesClicked(true);
+      props.buttonsDispatch({
+        type: "click",
+        payload: BUTTON_NAMES.SUBMIT_ATTRIBUTES,
+      });
     } else {
       toast.warn("Add atleast two attributes");
     }
@@ -46,11 +51,11 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
     <div className="add-attributes">
       <h2>What's important?</h2>
 
-      <div ref={props.addAttributesRef} className="attributes-list-and-add">
+      <div className="attributes-list-and-add">
         <input
           className="text-input"
           type="text"
-          placeholder="Tastiness"
+          placeholder="E.g. Tastiness, Affordability, Healthiness"
           value={attributeName}
           onChange={(e) => setAttributeName(e.target.value)}
         ></input>
@@ -60,9 +65,9 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
         <DisplayChoices state={props.state} options={false} />
       </div>
 
-      {!props.finishAttributesClicked && (
+      {!props.buttonsState[2].clicked && (
         <button className="next-button" onClick={() => handleNextClicked()}>
-          Next
+          <strong>Next</strong>
         </button>
       )}
     </div>

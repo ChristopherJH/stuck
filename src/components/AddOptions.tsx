@@ -1,17 +1,19 @@
-import { Dispatch, MutableRefObject, useState } from "react";
+import { Dispatch, useState } from "react";
 import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
 import { GrAddCircle } from "react-icons/gr";
 import { DisplayChoices } from "./DisplayChoices";
 import { toast } from "react-toastify";
+import { ButtonAction } from "../types/ButtonAction";
+import { Button } from "../types/Button";
+import { BUTTON_NAMES } from "../App";
 
 interface AddOptionProps {
   dispatch: Dispatch<Action>;
   state: StateType;
-  setFinishedOptionsClicked: (input: boolean) => void;
-  finishOptionsClicked: boolean;
-  addAttributesRef: MutableRefObject<HTMLDivElement | null>;
+  buttonsDispatch: Dispatch<ButtonAction>;
+  buttonsState: Button[];
 }
 export function AddOptions(props: AddOptionProps): JSX.Element {
   const [optionAttribute, setOptionAttribute] = useState<string>("");
@@ -37,14 +39,10 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
 
   function handleNextClicked() {
     if (props.state.options.length > 1) {
-      props.setFinishedOptionsClicked(true);
-      if (props.addAttributesRef.current) {
-        props.addAttributesRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-          inline: "nearest",
-        });
-      }
+      props.buttonsDispatch({
+        type: "click",
+        payload: BUTTON_NAMES.SUBMIT_OPTIONS,
+      });
     } else {
       toast.warn("Add atleast two options");
     }
@@ -58,7 +56,7 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
         <input
           className="text-input"
           type="text"
-          placeholder="Lasagna"
+          placeholder="E.g. Lasagna, Curry, Pizza"
           value={optionAttribute}
           onChange={(e) => setOptionAttribute(e.target.value)}
         ></input>
@@ -68,9 +66,9 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
         <DisplayChoices state={props.state} options={true} />
       </div>
 
-      {!props.finishOptionsClicked && (
+      {!props.buttonsState[1].clicked && (
         <button className="next-button" onClick={() => handleNextClicked()}>
-          Next
+          <strong>Next</strong>
         </button>
       )}
     </div>

@@ -4,4 +4,5 @@ import { Attribute } from "./Attribute";
 export interface StateType {
   options: Option[];
   attributes: Attribute[];
+  question: string;
 }
