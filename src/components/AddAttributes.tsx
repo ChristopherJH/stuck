@@ -8,6 +8,7 @@ import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
 import { DisplayChoices } from "./DisplayChoices";
 import { notDuplicateOrEmpty } from "../utility/notDuplicateOrEmpty";
+import { GrAddCircle } from "react-icons/gr";
 
 interface AddattributeProps {
   dispatch: Dispatch<Action>;
@@ -62,6 +63,9 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
             value={attributeName}
             onChange={(e) => setAttributeName(e.target.value)}
           ></input>
+          <button className="add-button" onClick={(e) => AddAttribute(e)}>
+            <GrAddCircle className="add-icon" />
+          </button>
         </form>
 
         <DisplayChoices state={props.state} options={false} />
