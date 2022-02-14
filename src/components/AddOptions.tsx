@@ -68,7 +68,11 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
           </button>
         </form>
 
-        <DisplayChoices state={props.state} options={true} />
+        <DisplayChoices
+          state={props.state}
+          options={true}
+          dispatch={props.dispatch}
+        />
       </div>
 
       {!props.buttonsState[1].clicked && (

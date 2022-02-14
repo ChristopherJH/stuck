@@ -4,6 +4,8 @@ import { addOptionAction } from "../actions/addOptionAction";
 import { addAttributeAction } from "../actions/addAttributeAction";
 import { changeAttributeWeightingAction } from "../actions/changeAttributeWeightingAction";
 import { changeOptionWeightingAction } from "../actions/changeOptionWeightingAction";
+import { deleteOptionAction } from "../actions/deleteOptionAction";
+import { deleteAttributeAction } from "../actions/deleteAttributeAction";
 
 // Actions available to reducer
 export const ACTIONS = {
@@ -12,6 +14,8 @@ export const ACTIONS = {
   CHANGE_attribute_WEIGHTING: "change-attribute-weighting",
   CHANGE_OPTION_WEIGHTING: "change-option-weighting",
   ADD_QUESTION: "add-question",
+  DELETE_OPTION: "delete-option",
+  DELETE_ATTRIBUTE: "delete-attribute",
 };
 
 // Reducer function for useReduce
@@ -50,6 +54,14 @@ export function reducer(state: StateType, action: Action): StateType {
     case ACTIONS.ADD_QUESTION:
       newState = JSON.parse(JSON.stringify(state));
       newState.question = action.payload.question;
+      return newState;
+    // Delete an option
+    case ACTIONS.DELETE_OPTION:
+      newState = deleteOptionAction(state, action.payload);
+      return newState;
+    // Delete an attribute
+    case ACTIONS.DELETE_ATTRIBUTE:
+      newState = deleteAttributeAction(state, action.payload);
       return newState;
     default:
       return state;

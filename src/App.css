@@ -140,9 +140,10 @@ h2 {
   font-size: large;
 }
 
-.choices-list p {
+.choice {
   padding: 5px 10px;
   border-bottom: #0d0d0e solid 1px;
+  cursor: pointer;
 }
 
 /* Weight Attributes and Options */
