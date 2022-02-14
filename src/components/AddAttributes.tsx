@@ -54,14 +54,17 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
       <h2>What's important?</h2>
 
       <div className="attributes-list-and-add">
-        <form onSubmit={(e) => AddAttribute(e)}>
+        <form className="add-attributes-form" onSubmit={(e) => AddAttribute(e)}>
           <input
-            className="text-input"
+            className="text-input add-attribute-input"
             type="text"
             placeholder="E.g. Tastiness, Affordability, Healthiness"
             value={attributeName}
             onChange={(e) => setAttributeName(e.target.value)}
           ></input>
+          <button className="add-button" onClick={(e) => AddAttribute(e)}>
+            <strong>Add Attribute</strong>
+          </button>
         </form>
 
         <DisplayChoices state={props.state} options={false} />

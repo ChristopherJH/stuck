@@ -55,14 +55,17 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
       <h2>What are the options?</h2>
 
       <div className="options-list-and-add">
-        <form onSubmit={(e) => AddOption(e)}>
+        <form className="add-options-form" onSubmit={(e) => AddOption(e)}>
           <input
-            className="text-input"
+            className="text-input add-option-input"
             type="text"
             placeholder="E.g. Lasagna, Curry, Pizza"
             value={optionName}
             onChange={(e) => setOptionName(e.target.value)}
           ></input>
+          <button className="add-button" onClick={(e) => AddOption(e)}>
+            <strong>Add Option</strong>
+          </button>
         </form>
 
         <DisplayChoices state={props.state} options={true} />

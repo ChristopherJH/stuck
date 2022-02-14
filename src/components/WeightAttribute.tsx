@@ -25,9 +25,6 @@ export function WeightAttribute(props: WeightAttributeProps): JSX.Element {
 
   return (
     <div className="weight-attribute">
-      <h3>
-        {props.attribute.name}: {props.attribute.weighting}
-      </h3>
       <input
         type="range"
         className="slider"
@@ -37,6 +34,9 @@ export function WeightAttribute(props: WeightAttributeProps): JSX.Element {
         value={props.attribute.weighting}
         onChange={(e) => handleWeightingChange(e)}
       ></input>
+      <h3>
+        {props.attribute.name}: {props.attribute.weighting}
+      </h3>
     </div>
   );
 }
