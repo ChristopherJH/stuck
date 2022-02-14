@@ -67,7 +67,11 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
           </button>
         </form>
 
-        <DisplayChoices state={props.state} options={false} />
+        <DisplayChoices
+          state={props.state}
+          options={false}
+          dispatch={props.dispatch}
+        />
       </div>
 
       {!props.buttonsState[2].clicked && (
