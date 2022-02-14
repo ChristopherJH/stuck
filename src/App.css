@@ -33,7 +33,6 @@ button:hover {
 body {
   background-color: #fafbfb;
   color: #2c3e50;
-  margin: 20px;
 }
 
 h1 {
@@ -46,6 +45,11 @@ h2 {
 }
 
 /* Header */
+
+.header {
+  margin: 20px;
+}
+
 .header-subheaders {
   display: flex;
   color: #2196f3;
@@ -76,6 +80,14 @@ h2 {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+.question-form {
+  display: flex;
+}
+
+.question-input input {
+  margin-right: 5px;
+}
+
 /* Add options and attributes */
 
 .add-options,
@@ -91,28 +103,20 @@ h2 {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.add-button,
-.refresh-button {
-  position: relative;
-  top: 5px;
-  border-bottom: 0px;
-  cursor: pointer;
-  font-size: x-large;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  padding: 6px 5px 2px;
-  border-radius: 40px;
-  margin-left: 10px;
-}
-
-.add-button:hover,
-.refresh-button:hover {
-  border-bottom: 0px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 4px 10px 0px;
+.add-attribute-input,
+.add-option-input {
+  max-width: 80%;
+  margin-right: 5px;
 }
 
 .next-button {
   display: block;
   margin: 10px 0px 10px auto;
+}
+
+.add-options-form,
+.add-attributes-form {
+  display: flex;
 }
 
 .options-list-and-add,
@@ -125,6 +129,11 @@ h2 {
   border-radius: 20px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   min-height: 30vh;
+}
+
+.options-list-and-add:hover,
+.attributes-list-and-add:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 4px 10px 0px;
 }
 
 .choices-list {
@@ -174,6 +183,12 @@ h2 {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+.weight-attribute:hover,
+.weight-option:hover,
+.winner-details:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 4px 10px 0px;
+}
+
 .weight-attribute h3 {
   margin-bottom: 20px;
 }
@@ -195,7 +210,7 @@ h2 {
 
 .winner-details {
   width: 50%;
-  margin: 50px auto;
+  margin: 50px auto 20px;
   background-color: white;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -203,21 +218,20 @@ h2 {
 .reveal-winner-button {
   margin: 20px auto 0px;
   display: block;
-  color: #9ccc65;
-  border-bottom: #9ccc65 solid 1px;
+  color: #2c3e50;
   font-size: x-large;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .reveal-winner-button:hover {
-  color: #c5e1a5;
-  border-bottom: #c5e1a5 solid 1px;
-}
-
-.refresh-button {
-  font-size: x-large;
-  margin: 0px 0px 0px auto;
-  display: block;
-  padding: 0px;
+  color: #637383;
+  background-color: white;
+  border: none;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 5px 20px 0px;
 }
 
 .winner-name {
@@ -227,4 +241,83 @@ h2 {
 .reload-button {
   display: block;
   margin: 10px 0px 10px auto;
+}
+
+/* Phone size Settings */
+
+@media only screen and (max-width: 600px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  body {
+    position: relative;
+  }
+  /* Question input */
+
+  .question-input {
+    width: auto;
+    padding: 50px 20px;
+    justify-content: center;
+    border-radius: 0px;
+  }
+
+  .question-form {
+    display: block;
+  }
+
+  .question-input button {
+    display: block;
+    margin: 10px 0px 10px auto;
+  }
+
+  .question-input input {
+    width: 95%;
+  }
+
+  /* Add options and attributes */
+  .add-options,
+  .add-attributes,
+  .attributes-weights,
+  .weight-options {
+    padding: 20px 20px;
+    margin: 50px 0px 50px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 29px 0px;
+    border-radius: 0px;
+    width: auto;
+  }
+
+  .add-attribute-input,
+  .add-option-input {
+    max-width: 95%;
+    margin-right: 0px;
+  }
+
+  .add-button {
+    display: block;
+    margin: 10px 0px 10px auto;
+  }
+
+  .add-options-form,
+  .add-attributes-form {
+    display: block;
+  }
+
+  .options-list-and-add,
+  .attributes-list-and-add {
+    width: auto;
+    margin: 0px;
+    padding: 20px;
+    min-height: 30vh;
+  }
+
+  .slider {
+    min-width: 80vw;
+  }
+
+  /* Display Winner */
+  .winner-details {
+    width: auto;
+    border-radius: 0px;
+  }
 }

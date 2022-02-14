@@ -35,7 +35,7 @@ export function QuestionInput(props: QuestionInputProps): JSX.Element {
   return (
     <div className="question-input">
       <h2>What are you stuck on?</h2>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form className="question-form" onSubmit={(e) => handleSubmit(e)}>
         <input
           className="text-input"
           type="text"
@@ -43,6 +43,12 @@ export function QuestionInput(props: QuestionInputProps): JSX.Element {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         ></input>
+        <button
+          className="submit-question-button"
+          onClick={(e) => handleSubmit(e)}
+        >
+          <strong>Submit</strong>
+        </button>
       </form>
       <h3>{props.state.question}</h3>
     </div>

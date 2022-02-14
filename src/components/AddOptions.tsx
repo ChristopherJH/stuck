@@ -8,7 +8,6 @@ import { ButtonAction } from "../types/ButtonAction";
 import { Button } from "../types/Button";
 import { BUTTON_NAMES } from "../utility/buttonsReducer";
 import { notDuplicateOrEmpty } from "../utility/notDuplicateOrEmpty";
-import { GrAddCircle } from "react-icons/gr";
 
 interface AddOptionProps {
   dispatch: Dispatch<Action>;
@@ -56,16 +55,16 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
       <h2>What are the options?</h2>
 
       <div className="options-list-and-add">
-        <form onSubmit={(e) => AddOption(e)}>
+        <form className="add-options-form" onSubmit={(e) => AddOption(e)}>
           <input
-            className="text-input"
+            className="text-input add-option-input"
             type="text"
             placeholder="E.g. Lasagna, Curry, Pizza"
             value={optionName}
             onChange={(e) => setOptionName(e.target.value)}
           ></input>
           <button className="add-button" onClick={(e) => AddOption(e)}>
-            <GrAddCircle className="add-icon" />
+            <strong>Add Option</strong>
           </button>
         </form>
 
