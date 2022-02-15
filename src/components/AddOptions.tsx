@@ -35,7 +35,7 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
 
   return (
     <div className="add-options">
-      <h2>What are the options?</h2>
+      <h2>What are the options❓</h2>
 
       <div className="options-list-and-add">
         <form className="add-options-form" onSubmit={(e) => AddOption(e)}>

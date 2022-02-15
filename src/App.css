@@ -2,15 +2,15 @@
 button {
   all: unset;
   cursor: pointer;
-  color: #2196f3;
-  border-bottom: #2196f3 solid 1px;
   padding: 10px;
   font-size: large;
+  color: #2c3e50;
+  border-bottom: #2c3e50 1px solid;
 }
 
 button:hover {
-  color: #64b5f6;
-  border-bottom: #64b5f6 solid 1px;
+  color: #5b7997;
+  border-bottom: #5b7997 2px solid;
 }
 
 .text-input {
@@ -37,16 +37,21 @@ button:hover {
 }
 
 .text-input:focus {
-  border-bottom: #64b5f6 solid 1px;
+  border-bottom: #5b7997 solid 2px;
 }
 
 body {
-  background-color: #fafbfb;
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgb(243, 244, 245) 100%
+  );
   color: #2c3e50;
 }
 
 h1 {
-  font-size: 64px;
+  font-size: 48px;
 }
 
 h2 {
@@ -56,43 +61,53 @@ h2 {
 /* Header */
 
 .header-title {
-  background-color: #2c3e50;
-  color: #e3f2fd;
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgb(243, 244, 245) 100%
+  );
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 50px 0px;
+  color: #2c3e50;
   padding: 10px;
   position: sticky;
   top: 0;
   display: flex;
+  justify-content: space-between;
 }
 
 .header-title h1 {
   margin: 0px;
 }
 
+.header-title-buttons {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
 .begin-button {
-  height: fit-content;
-  margin-top: 35px;
-  margin-left: 20px;
-  color: #e3f2fd;
-  border-bottom: #e3f2fd 1px solid;
+  color: #2c3e50;
+  border-bottom: #2c3e50 1px solid;
 }
 
 .begin-button:hover {
-  color: #f7fcff;
-  border-bottom: #f7fcff 1px solid;
+  color: #5b7997;
+  border-bottom: #5b7997 1px solid;
 }
 
 .header-motto {
-  margin: 20px;
+  margin: 20px 20px 0px;
 }
 
 .header-subheaders {
   display: flex;
   color: #2196f3;
   flex-wrap: wrap;
-  margin: 20px;
+  margin: 0px 20px 20px;
 }
 
-.header-subheaders h3 {
+.header-subheaders p {
   margin: 0px 15px 0px 0px;
 }
 
@@ -101,15 +116,6 @@ h2 {
 }
 
 /* Question input */
-
-.question-input {
-  padding: 50px;
-  justify-content: center;
-  border-radius: 20px;
-  margin: 100px auto 0px;
-  width: 80%;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
 
 .question-form {
   display: flex;
@@ -124,14 +130,13 @@ h2 {
 .add-options,
 .add-attributes,
 .attributes-weights,
-.weight-options {
-  background-color: #e3f2fd;
+.weight-options,
+.question-input {
   padding: 50px;
   justify-content: center;
   border-radius: 20px;
   margin: 100px auto 100px;
   width: 80%;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .add-attribute-input,
@@ -272,7 +277,7 @@ h2 {
 
 .reload-button {
   display: block;
-  margin: 10px 0px 10px auto;
+  margin: 10px 30px 20px auto;
 }
 
 /* Phone size Settings */

@@ -14,7 +14,7 @@ export default function WeightAttributes(
 ): JSX.Element {
   return (
     <div className="attributes-weights">
-      <h2>How important are they?</h2>
+      <h2>How important are they❓</h2>
       <h3>(Higher is better)</h3>
 
       <div className="attributes-weights-list">

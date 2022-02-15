@@ -23,7 +23,6 @@ export function QuestionInput(props: QuestionInputProps): JSX.Element {
         type: ACTIONS.ADD_QUESTION,
         payload: { question: inputValue },
       });
-      setInputValue("");
     } else {
       toast.warn("Cannot be empty");
     }
@@ -31,7 +30,7 @@ export function QuestionInput(props: QuestionInputProps): JSX.Element {
 
   return (
     <div className="question-input">
-      <h2>What are you stuck on?</h2>
+      <h2>What are you stuck on❓</h2>
       <form className="question-form" onSubmit={(e) => handleSubmit(e)}>
         <input
           className="text-input"
@@ -47,7 +46,6 @@ export function QuestionInput(props: QuestionInputProps): JSX.Element {
           <strong>Submit</strong>
         </button>
       </form>
-      <h3>{props.state.question}</h3>
     </div>
   );
 }

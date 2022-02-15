@@ -34,7 +34,7 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
 
   return (
     <div className="add-attributes">
-      <h2>What's important?</h2>
+      <h2>What's important❓</h2>
 
       <div className="attributes-list-and-add">
         <form className="add-attributes-form" onSubmit={(e) => AddAttribute(e)}>

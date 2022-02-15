@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { AddOptions } from "./components/AddOptions";
 import "./App.css";
 import { Header } from "./components/Header";
@@ -11,8 +11,6 @@ import { DisplayWinner } from "./components/DisplayWinner";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { QuestionInput } from "./components/QuestionInput";
-import { Button } from "./types/Button";
-import { buttonsReducer, BUTTON_NAMES } from "./utility/buttonsReducer";
 
 // Initial reducer states
 export const initialState: StateType = {
@@ -21,21 +19,9 @@ export const initialState: StateType = {
   question: "",
 };
 
-// Initial buttons
-const initialButtonsState: Button[] = [
-  { name: BUTTON_NAMES.SUBMIT_QUESTION, clicked: false },
-  { name: BUTTON_NAMES.SUBMIT_OPTIONS, clicked: false },
-  { name: BUTTON_NAMES.SUBMIT_ATTRIBUTES, clicked: false },
-  { name: BUTTON_NAMES.SUBMIT_ATTRIBUTES_WEIGHTS, clicked: false },
-  { name: BUTTON_NAMES.SUBMIT_OPTIONS_WEIGHTS, clicked: false },
-];
-
 function App() {
-  // Reducer for managing button clicks
-  const [buttonsState, buttonsDispatch] = useReducer(
-    buttonsReducer,
-    initialButtonsState
-  );
+  const [revealWinnerClicked, setRevealWinnerClicked] =
+    useState<boolean>(false);
   // Reducer for managing options, attributes and question
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -69,13 +55,13 @@ function App() {
           <WeightOptions
             state={state}
             dispatch={dispatch}
-            buttonsDispatch={buttonsDispatch}
-            buttonsState={buttonsState}
+            setRevealWinnerClicked={setRevealWinnerClicked}
+            revealWinnerClicked={revealWinnerClicked}
           />
         </>
       )}
 
-      {buttonsState[4].clicked && (
+      {revealWinnerClicked && (
         <DisplayWinner state={state} dispatch={dispatch} />
       )}
 

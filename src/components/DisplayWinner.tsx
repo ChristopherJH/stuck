@@ -78,7 +78,7 @@ export function DisplayWinner(props: DisplayWinnerProps): JSX.Element {
         className="reload-button"
         onClick={() => handleReload(props.dispatch, initialState)}
       >
-        Another decision to make?
+        Another decision to make❓
       </button>
     </div>
   );
