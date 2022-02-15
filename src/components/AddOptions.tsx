@@ -47,7 +47,7 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
             onChange={(e) => setOptionName(e.target.value)}
           ></input>
           <button className="add-button" onClick={(e) => AddOption(e)}>
-            <strong>Add Option</strong>
+            <strong>Add</strong>
           </button>
         </form>
         <div className="text-input-helper-message">

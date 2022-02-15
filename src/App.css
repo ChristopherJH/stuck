@@ -4,13 +4,13 @@ button {
   cursor: pointer;
   padding: 10px;
   font-size: large;
-  color: #2c3e50;
-  border-bottom: #2c3e50 1px solid;
+  color: #0475fe;
+  border-bottom: #0475fe 1px solid;
 }
 
 button:hover {
-  color: #5b7997;
-  border-bottom: #5b7997 1px solid;
+  color: #5fa6fd;
+  border-bottom: #5fa6fd 1px solid;
 }
 
 .text-input {
@@ -67,7 +67,7 @@ h2 {
     rgba(255, 255, 255, 1) 0%,
     rgb(243, 244, 245) 100%
   );
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 50px 0px;
+  border-bottom: #687480 solid 1px;
   color: #2c3e50;
   padding: 10px;
   position: sticky;
@@ -87,13 +87,13 @@ h2 {
 }
 
 .begin-button {
-  color: #2c3e50;
-  border-bottom: #2c3e50 1px solid;
+  color: #0475fe;
+  border-bottom: #0475fe 1px solid;
 }
 
 .begin-button:hover {
-  color: #5b7997;
-  border-bottom: #5b7997 1px solid;
+  color: #5fa6fd;
+  border-bottom: #5fa6fd 1px solid;
 }
 
 .header-motto {
@@ -102,12 +102,12 @@ h2 {
 
 .header-subheaders {
   display: flex;
-  color: #2196f3;
+  color: #0475fe;
   flex-wrap: wrap;
   margin: 0px 20px 20px;
 }
 
-.header-subheaders p {
+.header-subheaders h4 {
   margin: 0px 15px 0px 0px;
 }
 

@@ -46,7 +46,7 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
             onChange={(e) => setAttributeName(e.target.value)}
           ></input>
           <button className="add-button" onClick={(e) => AddAttribute(e)}>
-            <strong>Add Attribute</strong>
+            <strong>Add</strong>
           </button>
         </form>
         <div className="text-input-helper-message">

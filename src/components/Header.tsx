@@ -32,10 +32,10 @@ export function Header(props: HeaderProps): JSX.Element {
           <h2>Let’s help weigh up some options...</h2>
         </div>
         <div className="header-subheaders">
-          <p>What shall I have for dinner? 🍕</p>
-          <p>Where shall we go on holiday? 🏖</p>
-          <p>Which job is best? 🧳</p>
-          <p>What should I do tomorrow? ✅</p>
+          <h4>What shall I have for dinner? 🍕</h4>
+          <h4>Where shall we go on holiday? 🏖</h4>
+          <h4>Which job is best? 🧳</h4>
+          <h4>What should I do tomorrow? ✅</h4>
         </div>
       </div>
     </>
