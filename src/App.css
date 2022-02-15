@@ -67,7 +67,8 @@ h2 {
     rgba(255, 255, 255, 1) 0%,
     rgb(243, 244, 245) 100%
   );
-  border-bottom: #687480 solid 1px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 29px 0px;
+
   color: #2c3e50;
   padding: 10px;
   position: sticky;
@@ -135,7 +136,7 @@ h2 {
   padding: 50px;
   justify-content: center;
   border-radius: 20px;
-  margin: 100px auto 100px;
+  margin: 25px auto;
   width: 80%;
 }
 
@@ -172,9 +173,17 @@ h2 {
 }
 
 .choice {
-  padding: 5px 10px;
-  border-bottom: #0d0d0e solid 1px;
+  border: #2c3e50 solid 1px;
   cursor: pointer;
+  padding: 0px 15px;
+  border-radius: 5px;
+  margin-top: 10px;
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgb(243, 244, 245) 100%
+  );
 }
 
 /* Weight Attributes and Options */
@@ -319,7 +328,7 @@ h2 {
   .attributes-weights,
   .weight-options {
     padding: 20px 20px;
-    margin: 50px 0px 50px;
+    margin: 25px 0px;
     border-radius: 0px;
     width: auto;
   }

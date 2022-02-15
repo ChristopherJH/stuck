@@ -42,7 +42,9 @@ export function DisplayChoices(props: DisplayChoicesProps): JSX.Element {
             key={`${choice.name}-${index}`}
           >
             <p>
-              <strong>{choice.name}</strong>
+              <strong>
+                {index + 1}. {choice.name}
+              </strong>
             </p>
             <ReactTooltip place="top" type="dark" effect="float" />
           </div>

@@ -3,6 +3,7 @@ import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
 import { Attribute } from "../types/Attribute";
 import { ACTIONS } from "../utility/reducer";
+import { displayImportance } from "../utility/displayImportance";
 
 interface WeightAttributeProps {
   attribute: Attribute;
@@ -37,6 +38,7 @@ export function WeightAttribute(props: WeightAttributeProps): JSX.Element {
       <h3>
         {props.attribute.name}: {props.attribute.weighting}
       </h3>
+      <p>({displayImportance(props.attribute.weighting)})</p>
     </div>
   );
 }
