@@ -1,19 +1,18 @@
-import { useCallback, useEffect, useState } from "react";
+import { Dispatch, useCallback, useEffect, useState } from "react";
+import { initialState } from "../App";
+import { Action } from "../types/Action";
 import { Option } from "../types/Option";
 import { StateType } from "../types/StateType";
+import { handleReload } from "../utility/handleReload";
+import { Winner } from "../types/Winner";
 
 interface DisplayWinnerProps {
   state: StateType;
+  dispatch: Dispatch<Action>;
 }
-
-interface Winner {
-  name: string;
-  score: number;
-}
-
-const initialWinner = { name: "Unknown", score: 0 };
-
 export function DisplayWinner(props: DisplayWinnerProps): JSX.Element {
+  const initialWinner = { name: "Unknown", score: 0 };
+
   const [optionsScores, setOptionsScores] = useState<number[]>([]);
   const [winner, setWinner] = useState<Winner>(initialWinner);
 
@@ -67,10 +66,6 @@ export function DisplayWinner(props: DisplayWinnerProps): JSX.Element {
     findWinner();
   }, [findWinner]);
 
-  function handleReload() {
-    window.location.reload();
-  }
-
   return (
     <div className="display-winner">
       <div className="winner-details">
@@ -79,7 +74,10 @@ export function DisplayWinner(props: DisplayWinnerProps): JSX.Element {
         <h1 className="winner-name">🏆 {winner.name} 🏆</h1>
         <h4>Score: {winner.score}</h4>
       </div>
-      <button className="reload-button" onClick={() => handleReload()}>
+      <button
+        className="reload-button"
+        onClick={() => handleReload(props.dispatch, initialState)}
+      >
         Another decision to make?
       </button>
     </div>

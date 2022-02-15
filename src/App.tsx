@@ -1,11 +1,11 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { AddOptions } from "./components/AddOptions";
 import "./App.css";
 import { Header } from "./components/Header";
 import { StateType } from "./types/StateType";
 import { AddAttributes } from "./components/AddAttributes";
 import WeightAttributes from "./components/WeightAttributes";
-import { reducer } from "./utility/reducer";
+import { ACTIONS, reducer } from "./utility/reducer";
 import { WeightOptions } from "./components/WeightOptions";
 import { DisplayWinner } from "./components/DisplayWinner";
 import { ToastContainer } from "react-toastify";
@@ -15,7 +15,7 @@ import { Button } from "./types/Button";
 import { buttonsReducer, BUTTON_NAMES } from "./utility/buttonsReducer";
 
 // Initial reducer states
-const initialState: StateType = {
+export const initialState: StateType = {
   options: [],
   attributes: [],
   question: "",
@@ -39,52 +39,45 @@ function App() {
   // Reducer for managing options, attributes and question
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  useEffect(() => {
+    const saved = localStorage.getItem("state");
+    if (saved) {
+      dispatch({ type: ACTIONS.SET_STATE, payload: JSON.parse(saved) });
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("state", JSON.stringify(state));
+  });
+
   return (
     <div className="App">
-      <Header />
-      <QuestionInput
-        dispatch={dispatch}
-        state={state}
-        buttonsDispatch={buttonsDispatch}
-      />
+      <Header dispatch={dispatch} state={state} />
+      <QuestionInput dispatch={dispatch} state={state} />
       {/* If previous stage has been completed, reveal next */}
-      {buttonsState[0].clicked && (
-        <AddOptions
-          dispatch={dispatch}
-          state={state}
-          buttonsDispatch={buttonsDispatch}
-          buttonsState={buttonsState}
-        />
+      {state.question !== "" && (
+        <AddOptions dispatch={dispatch} state={state} />
       )}
 
-      {buttonsState[1].clicked && (
-        <AddAttributes
-          dispatch={dispatch}
-          state={state}
-          buttonsDispatch={buttonsDispatch}
-          buttonsState={buttonsState}
-        />
+      {state.options.length > 1 && (
+        <AddAttributes dispatch={dispatch} state={state} />
       )}
 
-      {buttonsState[2].clicked && (
-        <WeightAttributes
-          state={state}
-          dispatch={dispatch}
-          buttonsDispatch={buttonsDispatch}
-          buttonsState={buttonsState}
-        />
+      {state.attributes.length > 1 && (
+        <>
+          <WeightAttributes state={state} dispatch={dispatch} />
+          <WeightOptions
+            state={state}
+            dispatch={dispatch}
+            buttonsDispatch={buttonsDispatch}
+            buttonsState={buttonsState}
+          />
+        </>
       )}
 
-      {buttonsState[3].clicked && (
-        <WeightOptions
-          state={state}
-          dispatch={dispatch}
-          buttonsDispatch={buttonsDispatch}
-          buttonsState={buttonsState}
-        />
+      {buttonsState[4].clicked && (
+        <DisplayWinner state={state} dispatch={dispatch} />
       )}
-
-      {buttonsState[4].clicked && <DisplayWinner state={state} />}
 
       <ToastContainer
         position="top-right"

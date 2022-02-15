@@ -1,5 +1,4 @@
 import { Dispatch, FormEvent, useState } from "react";
-import { ButtonAction } from "../types/ButtonAction";
 import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
@@ -8,7 +7,6 @@ import { toast } from "react-toastify";
 interface QuestionInputProps {
   state: StateType;
   dispatch: Dispatch<Action>;
-  buttonsDispatch: Dispatch<ButtonAction>;
 }
 
 export function QuestionInput(props: QuestionInputProps): JSX.Element {
@@ -25,7 +23,6 @@ export function QuestionInput(props: QuestionInputProps): JSX.Element {
         type: ACTIONS.ADD_QUESTION,
         payload: { question: inputValue },
       });
-      props.buttonsDispatch({ type: "click", payload: "submitQuestion" });
       setInputValue("");
     } else {
       toast.warn("Cannot be empty");
