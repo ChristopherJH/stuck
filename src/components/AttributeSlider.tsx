@@ -3,7 +3,6 @@ import { Option } from "../types/Option";
 import { AttributeWeightType } from "../types/AttributeWeightType";
 import { Action } from "../types/Action";
 import { ACTIONS } from "../utility/reducer";
-import "../styling/sliders.css";
 
 interface AttributeSliderProps {
   attribute: AttributeWeightType;

@@ -9,6 +9,7 @@ import { deleteAttributeAction } from "../actions/deleteAttributeAction";
 
 // Actions available to reducer
 export const ACTIONS = {
+  SET_STATE: "set-state",
   ADD_OPTION: "add-option",
   ADD_ATTRIBUTE: "add-attribute",
   CHANGE_attribute_WEIGHTING: "change-attribute-weighting",
@@ -22,6 +23,10 @@ export const ACTIONS = {
 export function reducer(state: StateType, action: Action): StateType {
   let newState: StateType;
   switch (action.type) {
+    // Set a new state
+    case ACTIONS.SET_STATE:
+      newState = action.payload;
+      return newState;
     // Add a new option
     case ACTIONS.ADD_OPTION:
       newState = addOptionAction(state, action.payload);

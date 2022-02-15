@@ -1,9 +1,6 @@
 import { Dispatch, FormEvent, useState } from "react";
 import { toast } from "react-toastify";
-import { BUTTON_NAMES } from "../utility/buttonsReducer";
 import { Action } from "../types/Action";
-import { Button } from "../types/Button";
-import { ButtonAction } from "../types/ButtonAction";
 import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
 import { DisplayChoices } from "./DisplayChoices";
@@ -12,8 +9,6 @@ import { notDuplicateOrEmpty } from "../utility/notDuplicateOrEmpty";
 interface AddattributeProps {
   dispatch: Dispatch<Action>;
   state: StateType;
-  buttonsDispatch: Dispatch<ButtonAction>;
-  buttonsState: Button[];
 }
 export function AddAttributes(props: AddattributeProps): JSX.Element {
   const [attributeName, setAttributeName] = useState<string>("");
@@ -37,35 +32,28 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
     setAttributeName("");
   }
 
-  // Reveals next component if enough attributes given
-  function handleNextClicked() {
-    if (props.state.attributes.length > 1) {
-      props.buttonsDispatch({
-        type: "click",
-        payload: BUTTON_NAMES.SUBMIT_ATTRIBUTES,
-      });
-    } else {
-      toast.warn("Add atleast two attributes");
-    }
-  }
-
   return (
     <div className="add-attributes">
-      <h2>What's important?</h2>
+      <h2>What's important❓</h2>
 
       <div className="attributes-list-and-add">
         <form className="add-attributes-form" onSubmit={(e) => AddAttribute(e)}>
           <input
             className="text-input add-attribute-input"
             type="text"
-            placeholder="E.g. Tastiness, Affordability, Healthiness"
+            placeholder="E.g. Tastiness, Affordability"
             value={attributeName}
             onChange={(e) => setAttributeName(e.target.value)}
           ></input>
           <button className="add-button" onClick={(e) => AddAttribute(e)}>
-            <strong>Add Attribute</strong>
+            <strong>Add</strong>
           </button>
         </form>
+        <div className="text-input-helper-message">
+          {props.state.attributes.length < 2 && (
+            <p>Please provide at least two attributes.</p>
+          )}
+        </div>
 
         <DisplayChoices
           state={props.state}
@@ -73,12 +61,6 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
           dispatch={props.dispatch}
         />
       </div>
-
-      {!props.buttonsState[2].clicked && (
-        <button className="next-button" onClick={() => handleNextClicked()}>
-          <strong>Next</strong>
-        </button>
-      )}
     </div>
   );
 }

@@ -4,16 +4,11 @@ import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
 import { DisplayChoices } from "./DisplayChoices";
 import { toast } from "react-toastify";
-import { ButtonAction } from "../types/ButtonAction";
-import { Button } from "../types/Button";
-import { BUTTON_NAMES } from "../utility/buttonsReducer";
 import { notDuplicateOrEmpty } from "../utility/notDuplicateOrEmpty";
 
 interface AddOptionProps {
   dispatch: Dispatch<Action>;
   state: StateType;
-  buttonsDispatch: Dispatch<ButtonAction>;
-  buttonsState: Button[];
 }
 export function AddOptions(props: AddOptionProps): JSX.Element {
   const [optionName, setOptionName] = useState<string>("");
@@ -38,35 +33,28 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
     setOptionName("");
   }
 
-  // Reveals next component if enough options given
-  function handleNextClicked() {
-    if (props.state.options.length > 1) {
-      props.buttonsDispatch({
-        type: "click",
-        payload: BUTTON_NAMES.SUBMIT_OPTIONS,
-      });
-    } else {
-      toast.warn("Add atleast two options");
-    }
-  }
-
   return (
     <div className="add-options">
-      <h2>What are the options?</h2>
+      <h2>What are the options❓</h2>
 
       <div className="options-list-and-add">
         <form className="add-options-form" onSubmit={(e) => AddOption(e)}>
           <input
             className="text-input add-option-input"
             type="text"
-            placeholder="E.g. Lasagna, Curry, Pizza"
+            placeholder="E.g. Pasta, Pizza"
             value={optionName}
             onChange={(e) => setOptionName(e.target.value)}
           ></input>
           <button className="add-button" onClick={(e) => AddOption(e)}>
-            <strong>Add Option</strong>
+            <strong>Add</strong>
           </button>
         </form>
+        <div className="text-input-helper-message">
+          {props.state.options.length < 2 && (
+            <p>Please provide at least two options.</p>
+          )}
+        </div>
 
         <DisplayChoices
           state={props.state}
@@ -74,12 +62,6 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
           dispatch={props.dispatch}
         />
       </div>
-
-      {!props.buttonsState[1].clicked && (
-        <button className="next-button" onClick={() => handleNextClicked()}>
-          <strong>Next</strong>
-        </button>
-      )}
     </div>
   );
 }
