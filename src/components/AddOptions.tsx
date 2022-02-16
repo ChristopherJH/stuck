@@ -5,6 +5,7 @@ import { ACTIONS } from "../utility/reducer";
 import { DisplayChoices } from "./DisplayChoices";
 import { toast } from "react-toastify";
 import { notDuplicateOrEmpty } from "../utility/notDuplicateOrEmpty";
+import { Button, TextField, Tooltip } from "@mui/material";
 
 interface AddOptionProps {
   dispatch: Dispatch<Action>;
@@ -36,19 +37,30 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
   return (
     <div className="add-options">
       <h2>What are the options❓</h2>
+      <p className="mobile-tips">E.g. Lasagna, Pizza, Sandwich</p>
 
       <div className="options-list-and-add">
         <form className="add-options-form" onSubmit={(e) => AddOption(e)}>
-          <input
-            className="text-input add-option-input"
-            type="text"
-            placeholder="E.g. Pasta, Pizza"
-            value={optionName}
-            onChange={(e) => setOptionName(e.target.value)}
-          ></input>
-          <button className="add-button" onClick={(e) => AddOption(e)}>
+          <Tooltip title="E.g. Lasagna, Pizza, Sandwich" placement="top-start">
+            <TextField
+              fullWidth
+              sx={{ mr: 1 }}
+              id="outlined-basic"
+              className="text-field"
+              label="Option"
+              variant="outlined"
+              value={optionName}
+              onChange={(e) => setOptionName(e.target.value)}
+            />
+          </Tooltip>
+
+          <Button
+            variant="contained"
+            className="add-button"
+            onClick={(e) => AddOption(e)}
+          >
             <strong>Add</strong>
-          </button>
+          </Button>
         </form>
         <div className="text-input-helper-message">
           {props.state.options.length < 2 && (
@@ -62,6 +74,9 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
           dispatch={props.dispatch}
         />
       </div>
+      {props.state.options.length > 1 && (
+        <p className="scroll-message">Scroll to view the next section.</p>
+      )}
     </div>
   );
 }

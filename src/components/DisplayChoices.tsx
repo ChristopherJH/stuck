@@ -1,5 +1,5 @@
+import { List, ListItem, ListItemText, Divider, Tooltip } from "@mui/material";
 import { Dispatch } from "react";
-import ReactTooltip from "react-tooltip";
 import { Action } from "../types/Action";
 import { Attribute } from "../types/Attribute";
 import { Option } from "../types/Option";
@@ -15,6 +15,7 @@ interface DisplayChoicesProps {
 // Map through attributes or options and display each one
 export function DisplayChoices(props: DisplayChoicesProps): JSX.Element {
   let choices: Option[] | Attribute[];
+  // Change choices depending on what we expect
   if (props.options) {
     choices = props.state.options;
   } else {
@@ -23,7 +24,6 @@ export function DisplayChoices(props: DisplayChoicesProps): JSX.Element {
 
   // Deletes an option if clicked
   function deleteOption(name: string) {
-    console.log("deleting choice: ", name);
     if (props.options) {
       props.dispatch({ type: ACTIONS.DELETE_OPTION, payload: name });
     } else {
@@ -33,21 +33,23 @@ export function DisplayChoices(props: DisplayChoicesProps): JSX.Element {
 
   return (
     <div className="choices-list">
-      {choices.map((choice, index) => {
-        return (
-          <div
-            className="choice"
-            data-tip="Delete"
-            onClick={() => deleteOption(choice.name)}
-            key={`${choice.name}-${index}`}
-          >
-            <p>
-              <strong>{choice.name}</strong>
-            </p>
-            <ReactTooltip place="top" type="dark" effect="float" />
-          </div>
-        );
-      })}
+      <List component="nav" aria-label="mailbox folders">
+        {choices.map((choice, index) => {
+          return (
+            <div
+              onClick={() => deleteOption(choice.name)}
+              key={`${choice.name}-${index}`}
+            >
+              <Tooltip title="Delete" placement="right">
+                <ListItem button>
+                  <ListItemText primary={`${index + 1}. ${choice.name}`} />
+                </ListItem>
+              </Tooltip>
+              <Divider />
+            </div>
+          );
+        })}
+      </List>
     </div>
   );
 }

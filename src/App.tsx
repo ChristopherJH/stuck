@@ -49,7 +49,7 @@ function App() {
         <AddAttributes dispatch={dispatch} state={state} />
       )}
 
-      {state.attributes.length > 1 && (
+      {state.attributes.length > 1 && state.options.length > 1 && (
         <>
           <WeightAttributes state={state} dispatch={dispatch} />
           <WeightOptions

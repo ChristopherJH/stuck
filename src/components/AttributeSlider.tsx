@@ -3,6 +3,7 @@ import { Option } from "../types/Option";
 import { AttributeWeightType } from "../types/AttributeWeightType";
 import { Action } from "../types/Action";
 import { ACTIONS } from "../utility/reducer";
+import { Rating, Typography } from "@mui/material";
 
 interface AttributeSliderProps {
   attribute: AttributeWeightType;
@@ -11,31 +12,26 @@ interface AttributeSliderProps {
 }
 
 export function AttributeSlider(props: AttributeSliderProps): JSX.Element {
-  function handleOptionWeightingChange(num: number) {
+  function handleOptionWeightingChange(event: any, newValue: number | null) {
     props.dispatch({
       type: ACTIONS.CHANGE_OPTION_WEIGHTING,
       payload: {
         optionName: props.option.name,
         attributeName: props.attribute.name,
-        weighting: num,
+        weighting: newValue ? newValue : 0,
       },
     });
   }
 
   return (
     <div className="attribute-slider">
-      <input
-        type="range"
-        className="slider"
-        min="0"
-        max="100"
-        step="1"
+      <Typography component="legend">{props.attribute.name}</Typography>
+      <Rating
+        name="simple-controlled"
         value={props.attribute.weighting}
-        onChange={(e) => handleOptionWeightingChange(parseInt(e.target.value))}
-      ></input>
-      <h4>
-        {props.attribute.name}: {props.attribute.weighting}
-      </h4>
+        precision={0.5}
+        onChange={handleOptionWeightingChange}
+      />
     </div>
   );
 }

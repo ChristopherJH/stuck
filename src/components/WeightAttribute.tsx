@@ -1,8 +1,10 @@
-import { Dispatch } from "react";
+import { Dispatch, useState } from "react";
 import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
 import { Attribute } from "../types/Attribute";
 import { ACTIONS } from "../utility/reducer";
+import { displayImportance } from "../utility/displayImportance";
+import { Rating, Typography } from "@mui/material";
 
 interface WeightAttributeProps {
   attribute: Attribute;
@@ -12,31 +14,35 @@ interface WeightAttributeProps {
 
 // A single component where the user can change the weighting of a attribute
 export function WeightAttribute(props: WeightAttributeProps): JSX.Element {
+  const [hover, setHover] = useState<number>(-1);
+
   // Handler functions for updating the slider weight and changing it in reducer
-  function handleWeightingChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleWeightingChange(event: any, newValue: number | null) {
     props.dispatch({
       type: ACTIONS.CHANGE_attribute_WEIGHTING,
       payload: {
         name: props.attribute.name,
-        weighting: parseInt(e.target.value),
+        weighting: newValue ? newValue : 0,
       },
     });
   }
 
   return (
     <div className="weight-attribute">
-      <input
-        type="range"
-        className="slider"
-        min={0}
-        max={100}
-        step={1}
+      <h3>{props.attribute.name}</h3>
+      <Rating
+        name="hover-feedback"
         value={props.attribute.weighting}
-        onChange={(e) => handleWeightingChange(e)}
-      ></input>
-      <h3>
-        {props.attribute.name}: {props.attribute.weighting}
-      </h3>
+        precision={0.5}
+        onChange={handleWeightingChange}
+        onChangeActive={(event, newHover) => {
+          setHover(newHover);
+        }}
+      />
+      <Typography component="legend">
+        {" "}
+        {displayImportance(hover !== -1 ? hover : props.attribute.weighting)}
+      </Typography>
     </div>
   );
 }

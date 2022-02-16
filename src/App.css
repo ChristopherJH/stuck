@@ -1,34 +1,16 @@
 /* General Styling */
-button {
-  all: unset;
-  cursor: pointer;
-  padding: 10px;
-  font-size: large;
-  color: #0475fe;
-  border-bottom: #0475fe 1px solid;
-}
-
-button:hover {
-  color: #5fa6fd;
-  border-bottom: #5fa6fd 1px solid;
-}
-
-.text-input {
-  width: 100%;
-  padding: 10px;
-  font-size: large;
-  background-color: transparent;
-  border: 0px;
-  outline: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  border-radius: 10px;
-}
 
 .text-input-helper-message {
   color: #637383;
   margin-left: 5px;
+}
+
+.mobile-tips {
+  display: none;
+}
+
+.text-field {
+  margin-right: 25px;
 }
 
 .text-input-helper-message p {
@@ -36,17 +18,8 @@ button:hover {
   font-size: small;
 }
 
-.text-input:focus {
-  border-bottom: #5b7997 solid 2px;
-}
-
 body {
   background: rgb(255, 255, 255);
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 0%,
-    rgb(243, 244, 245) 100%
-  );
   color: #2c3e50;
 }
 
@@ -60,20 +33,21 @@ h2 {
 
 /* Header */
 
-.header-title {
-  background: rgb(255, 255, 255);
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 0%,
-    rgb(243, 244, 245) 100%
-  );
-  border-bottom: #687480 solid 1px;
+.navbar {
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 29px 0px;
+  width: 99vw;
   color: #2c3e50;
   padding: 10px;
   position: sticky;
+  z-index: 5;
   top: 0;
   display: flex;
   justify-content: space-between;
+}
+
+.header-title {
+  display: flex;
 }
 
 .header-title h1 {
@@ -84,16 +58,7 @@ h2 {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-}
-
-.begin-button {
-  color: #0475fe;
-  border-bottom: #0475fe 1px solid;
-}
-
-.begin-button:hover {
-  color: #5fa6fd;
-  border-bottom: #5fa6fd 1px solid;
+  margin-right: 20px;
 }
 
 .header-motto {
@@ -132,10 +97,10 @@ h2 {
 .attributes-weights,
 .weight-options,
 .question-input {
-  padding: 50px;
+  padding: 20px 10px;
   justify-content: center;
-  border-radius: 20px;
-  margin: 100px auto 100px;
+  border-radius: 10px;
+  margin: auto;
   width: 80%;
 }
 
@@ -155,6 +120,11 @@ h2 {
   display: flex;
 }
 
+.scroll-message {
+  width: fit-content;
+  margin: 10px 0px 10px auto;
+}
+
 .options-list-and-add,
 .attributes-list-and-add {
   width: 50%;
@@ -162,19 +132,13 @@ h2 {
   background-color: #fafbfb;
   margin: 20px auto;
   padding: 40px;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   min-height: 30vh;
 }
 
 .choices-list {
   font-size: large;
-}
-
-.choice {
-  padding: 5px 10px;
-  border-bottom: #0d0d0e solid 1px;
-  cursor: pointer;
 }
 
 /* Weight Attributes and Options */
@@ -207,25 +171,17 @@ h2 {
 .weight-attribute,
 .weight-option,
 .winner-details {
+  min-width: 300px;
   background-color: #fafbfb;
   margin: 20px;
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
   text-align: center;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .weight-attribute h3 {
   margin-bottom: 20px;
-}
-
-.weight-option h3 {
-  font-size: x-large;
-}
-
-.weight-option h4 {
-  font-size: medium;
-  margin: 0px 0px 10px;
 }
 
 .attribute-slider h4 {
@@ -243,29 +199,17 @@ h2 {
 
 .reveal-winner-button {
   margin: 20px auto 0px;
-  display: block;
-  color: #2c3e50;
-  font-size: x-large;
-  background-color: white;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-
-.reveal-winner-button:hover {
-  color: #637383;
-  background-color: white;
-  border: none;
+  width: fit-content;
 }
 
 .winner-name {
   margin: 0px;
 }
 
-.reload-button {
+.another-decision-button {
   display: block;
   margin: 10px 30px 20px auto;
+  width: fit-content;
 }
 
 .second-place-button {
@@ -283,6 +227,9 @@ h2 {
   html,
   body {
     overflow-x: hidden;
+  }
+  .mobile-tips {
+    display: block;
   }
   body {
     position: relative;
@@ -319,7 +266,7 @@ h2 {
   .attributes-weights,
   .weight-options {
     padding: 20px 20px;
-    margin: 50px 0px 50px;
+    margin: 25px 0px;
     border-radius: 0px;
     width: auto;
   }

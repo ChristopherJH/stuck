@@ -3,10 +3,10 @@ import { Option } from "../types/Option";
 import { StateType } from "../types/StateType";
 
 // Creating a state that can be used in testing
-const tastiness = { name: "Tastiness", weighting: 50 };
-const cost = { name: "Cost", weighting: 50 };
-const tastinessAttribute = { id: 0, name: "Tastiness", weighting: 50 };
-const costAttribute = { id: 1, name: "Cost", weighting: 50 };
+const tastiness = { name: "Tastiness", weighting: 2.5 };
+const cost = { name: "Cost", weighting: 2.5 };
+const tastinessAttribute = { id: 0, name: "Tastiness", weighting: 2.5 };
+const costAttribute = { id: 1, name: "Cost", weighting: 2.5 };
 
 const pizza = {
   id: 0,

@@ -15,8 +15,6 @@ export default function WeightAttributes(
   return (
     <div className="attributes-weights">
       <h2>How important are they❓</h2>
-      <h3>(Higher is better)</h3>
-
       <div className="attributes-weights-list">
         {props.state.attributes.map((attribute) => {
           return (
