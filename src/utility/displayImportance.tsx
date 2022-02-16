@@ -1,15 +1,13 @@
 export function displayImportance(value: number): string {
-  if (value > 90) {
+  if (value === 5) {
     return "Extremely important";
-  } else if (value > 80) {
-    return "Super important";
-  } else if (value > 60) {
+  } else if (value > 4) {
     return "Very important";
-  } else if (value >= 50) {
+  } else if (value > 3) {
     return "Pretty important";
-  } else if (value > 30) {
+  } else if (value > 2) {
     return "A little important";
-  } else if (value > 10) {
+  } else if (value > 1) {
     return "Not very important";
   } else if (value > 0) {
     return "Barely important";

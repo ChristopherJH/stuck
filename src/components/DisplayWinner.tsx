@@ -5,6 +5,7 @@ import { Option } from "../types/Option";
 import { StateType } from "../types/StateType";
 import { handleReload } from "../utility/handleReload";
 import { Winner } from "../types/Winner";
+import { Button } from "@mui/material";
 
 interface DisplayWinnerProps {
   state: StateType;
@@ -94,29 +95,28 @@ export function DisplayWinner(props: DisplayWinnerProps): JSX.Element {
       <div className="winner-details">
         <h2>{props.state.question}</h2>
         <h1 className="winner-name">🏆 {winners[0].name} 🏆</h1>
-        <h4>Score: {winners[0].score}</h4>
         {showSecondPlace ? (
           <p className="second-place">
-            🥈{" "}
-            <strong>
-              {winners[1].name} ({winners[1].score})
-            </strong>
+            🥈 <strong>{winners[1].name}</strong>
           </p>
         ) : (
-          <button
+          <Button
+            variant="text"
             className="second-place-button"
             onClick={() => setShowSecondPlace(true)}
           >
             View Next Best Option 🥈
-          </button>
+          </Button>
         )}
       </div>
-      <button
-        className="reload-button"
-        onClick={() => handleReload(props.dispatch, initialState)}
-      >
-        Another decision to make❓
-      </button>
+      <div className="another-decision-button">
+        <Button
+          variant="text"
+          onClick={() => handleReload(props.dispatch, initialState)}
+        >
+          Another decision to make❓
+        </Button>
+      </div>
     </div>
   );
 }

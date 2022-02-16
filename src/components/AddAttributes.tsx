@@ -5,6 +5,7 @@ import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
 import { DisplayChoices } from "./DisplayChoices";
 import { notDuplicateOrEmpty } from "../utility/notDuplicateOrEmpty";
+import { Button, TextField, Tooltip } from "@mui/material";
 
 interface AddattributeProps {
   dispatch: Dispatch<Action>;
@@ -35,19 +36,29 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
   return (
     <div className="add-attributes">
       <h2>What's important❓</h2>
+      <p className="mobile-tips">E.g. Tastiness, Affordability</p>
 
       <div className="attributes-list-and-add">
         <form className="add-attributes-form" onSubmit={(e) => AddAttribute(e)}>
-          <input
-            className="text-input add-attribute-input"
-            type="text"
-            placeholder="E.g. Tastiness, Affordability"
-            value={attributeName}
-            onChange={(e) => setAttributeName(e.target.value)}
-          ></input>
-          <button className="add-button" onClick={(e) => AddAttribute(e)}>
+          <Tooltip title="E.g. Tastiness, Affordability" placement="top-start">
+            <TextField
+              fullWidth
+              sx={{ mr: 1 }}
+              id="outlined-basic"
+              className="text-field"
+              label="Attribute"
+              variant="outlined"
+              value={attributeName}
+              onChange={(e) => setAttributeName(e.target.value)}
+            />
+          </Tooltip>
+          <Button
+            variant="contained"
+            className="add-button"
+            onClick={(e) => AddAttribute(e)}
+          >
             <strong>Add</strong>
-          </button>
+          </Button>
         </form>
         <div className="text-input-helper-message">
           {props.state.attributes.length < 2 && (
@@ -61,6 +72,9 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
           dispatch={props.dispatch}
         />
       </div>
+      {props.state.options.length > 1 && (
+        <p className="scroll-message">Scroll to view the next section.</p>
+      )}
     </div>
   );
 }

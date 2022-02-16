@@ -13,7 +13,7 @@ export function addOptionAction(state: StateType, name: string): StateType {
   newState.attributes.forEach((attribute) => {
     newState.options[newState.options.length - 1].attribute_weightings.push({
       name: attribute.name,
-      weighting: 50,
+      weighting: 2.5,
     });
   });
 

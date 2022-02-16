@@ -3,6 +3,7 @@ import { Action } from "../types/Action";
 import { StateType } from "../types/StateType";
 import { ACTIONS } from "../utility/reducer";
 import { toast } from "react-toastify";
+import { Button, TextField, Tooltip } from "@mui/material";
 
 interface QuestionInputProps {
   state: StateType;
@@ -31,20 +32,29 @@ export function QuestionInput(props: QuestionInputProps): JSX.Element {
   return (
     <div className="question-input">
       <h2>What are you stuck on❓</h2>
+      <p className="mobile-tips">E.g. What should I have for lunch?</p>
       <form className="question-form" onSubmit={(e) => handleSubmit(e)}>
-        <input
-          className="text-input"
-          type="text"
-          placeholder="E.g. What should I eat tonight?"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        ></input>
-        <button
+        <Tooltip
+          title="E.g. What should I have for lunch?"
+          placement="bottom-start"
+        >
+          <TextField
+            fullWidth
+            id="outlined-basic"
+            sx={{ mr: 1 }}
+            label="Question"
+            variant="outlined"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
+        </Tooltip>
+        <Button
+          variant="contained"
           className="submit-question-button"
           onClick={(e) => handleSubmit(e)}
         >
           <strong>Submit</strong>
-        </button>
+        </Button>
       </form>
     </div>
   );
