@@ -19,6 +19,5 @@ export function changeOptionWeightingAction(
   if (attribute !== undefined) {
     attribute["weighting"] = weighting;
   }
-  console.log(newState);
   return newState;
 }

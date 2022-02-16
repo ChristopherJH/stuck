@@ -11,6 +11,5 @@ export function addAttributeAction(state: StateType, name: string): StateType {
   });
   // Add attribute to options attribute_weightings array
   AddAttributeToOptions(newState, name);
-  console.log(newState);
   return newState;
 }

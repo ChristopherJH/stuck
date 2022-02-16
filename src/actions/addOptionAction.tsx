@@ -17,6 +17,5 @@ export function addOptionAction(state: StateType, name: string): StateType {
     });
   });
 
-  console.log(newState);
   return newState;
 }

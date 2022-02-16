@@ -4,9 +4,9 @@ import { StateType } from "../types/StateType";
 import { testInputState } from "../utility/testInputState";
 import { changeAttributeWeightingAction } from "./changeAttributeWeightingAction";
 
-const tastiness = { name: "Tastiness", weighting: 50 };
-const cost = { name: "Cost", weighting: 50 };
-const costAttribute = { id: 1, name: "Cost", weighting: 50 };
+const tastiness = { name: "Tastiness", weighting: 2.5 };
+const cost = { name: "Cost", weighting: 2.5 };
+const costAttribute = { id: 1, name: "Cost", weighting: 2.5 };
 
 const pizza = {
   id: 0,

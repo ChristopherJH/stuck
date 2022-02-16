@@ -5,17 +5,17 @@ import { testInputState } from "../utility/testInputState";
 import { addAttributeAction } from "./addAttributeAction";
 
 // Create input state
-const tastiness = { name: "Tastiness", weighting: 50 };
-const cost = { name: "Cost", weighting: 50 };
-const tastinessAttribute = { id: 0, name: "Tastiness", weighting: 50 };
-const costAttribute = { id: 1, name: "Cost", weighting: 50 };
+const tastiness = { name: "Tastiness", weighting: 2.5 };
+const cost = { name: "Cost", weighting: 2.5 };
+const tastinessAttribute = { id: 0, name: "Tastiness", weighting: 2.5 };
+const costAttribute = { id: 1, name: "Cost", weighting: 2.5 };
 
 // Create output state
-const healthiness = { name: "Healthiness", weighting: 50 };
+const healthiness = { name: "Healthiness", weighting: 2.5 };
 const healthinessAttribute = {
   id: 2,
   name: "Healthiness",
-  weighting: 50,
+  weighting: 2.5,
 };
 const outputPizza = {
   id: 0,

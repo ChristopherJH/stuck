@@ -4,7 +4,6 @@ export function deleteAttributeAction(
   state: StateType,
   name: string
 ): StateType {
-  console.log("Deleting attribute: ", name);
   let newState: StateType = JSON.parse(JSON.stringify(state));
   const updatedAttributes = newState.attributes.filter(
     (attribute) => attribute.name !== name

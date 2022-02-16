@@ -15,6 +15,7 @@ interface DisplayChoicesProps {
 // Map through attributes or options and display each one
 export function DisplayChoices(props: DisplayChoicesProps): JSX.Element {
   let choices: Option[] | Attribute[];
+  // Change choices depending on what we expect
   if (props.options) {
     choices = props.state.options;
   } else {
@@ -23,7 +24,6 @@ export function DisplayChoices(props: DisplayChoicesProps): JSX.Element {
 
   // Deletes an option if clicked
   function deleteOption(name: string) {
-    console.log("deleting choice: ", name);
     if (props.options) {
       props.dispatch({ type: ACTIONS.DELETE_OPTION, payload: name });
     } else {

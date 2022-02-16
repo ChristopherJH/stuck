@@ -94,19 +94,32 @@ export function DisplayWinner(props: DisplayWinnerProps): JSX.Element {
     <div className="display-winner">
       <div className="winner-details">
         <h2>{props.state.question}</h2>
-        <h1 className="winner-name">🏆 {winners[0].name} 🏆</h1>
-        {showSecondPlace ? (
-          <p className="second-place">
-            🥈 <strong>{winners[1].name}</strong>
-          </p>
+        {/* If we have a tie, show both options */}
+        {winners[0].score === winners[1].score ? (
+          <>
+            <h1 className="winner-name">
+              🏆 {winners[0].name} or {winners[1].name} 🏆
+            </h1>{" "}
+            <h2>(It's a tie!)</h2>
+          </>
         ) : (
-          <Button
-            variant="text"
-            className="second-place-button"
-            onClick={() => setShowSecondPlace(true)}
-          >
-            View Next Best Option 🥈
-          </Button>
+          // If we have no tie, display winner with option to display second place
+          <>
+            <h1 className="winner-name">🏆 {winners[0].name} 🏆</h1>
+            {showSecondPlace ? (
+              <p className="second-place">
+                🥈 <strong>{winners[1].name}</strong>
+              </p>
+            ) : (
+              <Button
+                variant="text"
+                className="second-place-button"
+                onClick={() => setShowSecondPlace(true)}
+              >
+                View Next Best Option 🥈
+              </Button>
+            )}
+          </>
         )}
       </div>
       <div className="another-decision-button">

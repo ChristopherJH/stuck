@@ -1,4 +1,8 @@
+// Returns a descriptive string based on a score value passed
 export function displayImportance(value: number): string {
+  if (value > 5) {
+    return "Invalid value";
+  }
   if (value === 5) {
     return "Extremely important";
   } else if (value > 4) {
@@ -11,7 +15,9 @@ export function displayImportance(value: number): string {
     return "Not very important";
   } else if (value > 0) {
     return "Barely important";
-  } else {
+  } else if (value === 0) {
     return "Not at all important";
+  } else {
+    return "Invalid value";
   }
 }

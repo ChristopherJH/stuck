@@ -16,6 +16,5 @@ export function changeAttributeWeightingAction(
   if (attribute !== undefined) {
     attribute["weighting"] = weighting;
   }
-  console.log(newState);
   return newState;
 }
