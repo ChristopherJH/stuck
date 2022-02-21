@@ -39,6 +39,7 @@ export function DisplayChoices(props: DisplayChoicesProps): JSX.Element {
             <div
               onClick={() => deleteOption(choice.name)}
               key={`${choice.name}-${index}`}
+              id={`choice-${choice.name}`}
             >
               <Tooltip title="Delete" placement="right">
                 <ListItem button>

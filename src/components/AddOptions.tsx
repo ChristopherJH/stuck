@@ -46,7 +46,7 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
               fullWidth
               sx={{ mr: 1 }}
               id="outlined-basic"
-              className="text-field"
+              className="text-field add-option-input"
               label="Option"
               variant="outlined"
               value={optionName}
@@ -56,17 +56,17 @@ export function AddOptions(props: AddOptionProps): JSX.Element {
 
           <Button
             variant="contained"
-            className="add-button"
+            className="add-button add-option-button"
             onClick={(e) => AddOption(e)}
           >
             <strong>Add</strong>
           </Button>
         </form>
-        <div className="text-input-helper-message">
-          {props.state.options.length < 2 && (
+        {props.state.options.length < 2 && (
+          <div className="text-input-helper-message add-options-helper-message">
             <p>Please provide at least two options.</p>
-          )}
-        </div>
+          </div>
+        )}
 
         <DisplayChoices
           state={props.state}
