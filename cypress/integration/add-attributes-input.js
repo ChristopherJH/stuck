@@ -79,8 +79,9 @@ describe("2 valid attributes inputted", () => {
   it("Removes helper message", () => {
     cy.get(".add-attributes-helper-message").should("not.exist");
   });
-  it("Shows next section", () => {
+  it("Shows next sections", () => {
     cy.get(".attributes-weights").should("exist");
+    cy.get(".weight-options").should("exist");
   });
 });
 
