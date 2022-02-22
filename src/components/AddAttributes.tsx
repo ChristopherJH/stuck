@@ -45,7 +45,7 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
               fullWidth
               sx={{ mr: 1 }}
               id="outlined-basic"
-              className="text-field"
+              className="text-field add-attribute-input"
               label="Attribute"
               variant="outlined"
               value={attributeName}
@@ -54,17 +54,17 @@ export function AddAttributes(props: AddattributeProps): JSX.Element {
           </Tooltip>
           <Button
             variant="contained"
-            className="add-button"
+            className="add-button add-attribute-button"
             onClick={(e) => AddAttribute(e)}
           >
             <strong>Add</strong>
           </Button>
         </form>
-        <div className="text-input-helper-message">
-          {props.state.attributes.length < 2 && (
+        {props.state.attributes.length < 2 && (
+          <div className="text-input-helper-message add-attributes-helper-message">
             <p>Please provide at least two attributes.</p>
-          )}
-        </div>
+          </div>
+        )}
 
         <DisplayChoices
           state={props.state}

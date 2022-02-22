@@ -40,6 +40,7 @@ export function QuestionInput(props: QuestionInputProps): JSX.Element {
         >
           <TextField
             fullWidth
+            className="submit-question-input"
             id="outlined-basic"
             sx={{ mr: 1 }}
             label="Question"

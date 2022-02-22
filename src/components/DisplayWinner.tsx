@@ -1,11 +1,12 @@
 import { Dispatch, useCallback, useEffect, useState } from "react";
 import { initialState } from "../App";
 import { Action } from "../types/Action";
-import { Option } from "../types/Option";
 import { StateType } from "../types/StateType";
 import { handleReload } from "../utility/handleReload";
 import { Winner } from "../types/Winner";
 import { Button } from "@mui/material";
+import { calculateScore } from "../utility/calculateScore";
+import { findWinners } from "../utility/findWinners";
 
 interface DisplayWinnerProps {
   state: StateType;
@@ -24,59 +25,25 @@ export function DisplayWinner(props: DisplayWinnerProps): JSX.Element {
   // State for our 'show second place' button
   const [showSecondPlace, setShowSecondPlace] = useState<boolean>(false);
 
-  // Calculate the total score for an option
-  function calculateScore(option: Option): number {
-    let score = 0;
-    for (const attribute of option.attribute_weightings) {
-      // Find the attribute we're looking for in options
-      const attributeInOption = option.attribute_weightings.find(
-        (a) => a.name === attribute.name
-      );
-      if (attributeInOption) {
-        // If attribute exists, find index of it
-        const indexOfAttributeInOption =
-          option.attribute_weightings.indexOf(attributeInOption);
-        // Get weighting value
-        const optionWeighting =
-          option.attribute_weightings[indexOfAttributeInOption].weighting;
-        // Calculate overall weighting and add to total score
-        score += attribute.weighting * optionWeighting;
-      } else {
-        console.log("Attribute not found");
-      }
-    }
-    return score;
-  }
-
   // Calculate the total score of all options
   const calculateScores = useCallback(() => {
     setOptionsScores([]);
     for (const option of props.state.options) {
-      setOptionsScores((prevVals) => [...prevVals, calculateScore(option)]);
+      setOptionsScores((prevVals) => [
+        ...prevVals,
+        calculateScore(option, props.state.attributes),
+      ]);
     }
-  }, [props.state.options]);
+  }, [props.state.options, props.state.attributes]);
 
   // Return array of winners
-  const findWinners = useCallback(() => {
-    // Make copies of scores and options so that we can alter them
-    let scores = [...optionsScores];
-    let options = [...props.state.options];
-    // Only start the process if scores array contains elements
-    if (scores.length > 0) {
-      setWinners([]);
-    }
-    while (scores.length > 0) {
-      // Find max element
-      const max = Math.max(...scores);
-      // Find index of max element
-      const winnerIndex = scores.indexOf(max);
-      // Use winner index to find winner name in options array
-      const winnerName = options[winnerIndex].name;
-      // Add winner to our winners array
-      setWinners((prevVals) => [...prevVals, { name: winnerName, score: max }]);
-      // Remove winner from arrays to find the next winner
-      scores.splice(winnerIndex, 1);
-      options.splice(winnerIndex, 1);
+  const findWinnersCallback = useCallback(() => {
+    const newWinners: Winner[] = findWinners(
+      optionsScores,
+      props.state.options
+    );
+    if (newWinners.length > 0) {
+      setWinners(newWinners);
     }
   }, [optionsScores, props.state.options]);
 
@@ -87,8 +54,8 @@ export function DisplayWinner(props: DisplayWinnerProps): JSX.Element {
 
   // Find winner whenever option scores array changes
   useEffect(() => {
-    findWinners();
-  }, [findWinners]);
+    findWinnersCallback();
+  }, [findWinnersCallback]);
 
   return (
     <div className="display-winner">

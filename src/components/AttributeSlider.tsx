@@ -28,6 +28,7 @@ export function AttributeSlider(props: AttributeSliderProps): JSX.Element {
       <Typography component="legend">{props.attribute.name}</Typography>
       <Rating
         name="simple-controlled"
+        className="attribute-rating"
         value={props.attribute.weighting}
         precision={0.5}
         onChange={handleOptionWeightingChange}
