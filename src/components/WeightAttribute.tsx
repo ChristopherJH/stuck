@@ -35,6 +35,7 @@ export function WeightAttribute(props: WeightAttributeProps): JSX.Element {
       <h3>{props.attribute.name}</h3>
       <Rating
         name="hover-feedback"
+        className="weight-attribute-rating"
         value={props.attribute.weighting}
         precision={0.5}
         onChange={handleWeightingChange}
