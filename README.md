@@ -29,3 +29,13 @@ Deployed site: https://stuckcjh.netlify.app/
 6. Reveal winner
 
 ## Technologies
+Project is created with:
+
+React: ^17.0.2
+Typescript: ^4.5.5
+Eslint: ^8.8.0
+Prettier: 2.5.1
+Material UI: ^5.4.2
+React Toastify: ^8.1.1
+Jest: ^27.4.0
+Cypress: ^9.5.0
